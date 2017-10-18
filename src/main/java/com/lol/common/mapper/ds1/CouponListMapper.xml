@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lol.common.mapper.ds1.CouponListMapper" >
+  <resultMap id="BaseResultMap" type="com.lol.common.model.ds1.CouponList" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="card_id" property="cardId" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="origin" property="origin" jdbcType="INTEGER" />
+    <result column="term" property="term" jdbcType="INTEGER" />
+    <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+    <result column="service_phone" property="servicePhone" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="notice" property="notice" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="logo_url" property="logoUrl" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="sys_cust_id" property="sysCustId" jdbcType="INTEGER" />
+    <result column="parent_cust_id" property="parentCustId" jdbcType="INTEGER" />
+    <result column="remain_count" property="remainCount" jdbcType="INTEGER" />
+    <result column="insert_user" property="insertUser" jdbcType="VARCHAR" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.lol.common.model.ds1.CouponListWithBLOBs" extends="BaseResultMap" >
+    <result column="send_json" property="sendJson" jdbcType="LONGVARCHAR" />
+    <result column="res_json" property="resJson" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, card_id, count, money, origin, term, brand_name, service_phone, title, notice, 
+    description, logo_url, create_time, status, sys_cust_id, parent_cust_id, remain_count, 
+    insert_user, delete_user
+  </sql>
+  <sql id="Blob_Column_List" >
+    send_json, res_json
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.lol.common.model.ds1.CouponListExample" >
+    <include refid="pagePrefix" />
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from coupon_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="pageSuffix" />
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lol.common.model.ds1.CouponListExample" >
+    <include refid="pagePrefix" />
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from coupon_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="pageSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from coupon_list
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from coupon_list
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lol.common.model.ds1.CouponListExample" >
+    delete from coupon_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lol.common.model.ds1.CouponListWithBLOBs" >
+    insert into coupon_list (id, card_id, count, 
+      money, origin, term, 
+      brand_name, service_phone, title, 
+      notice, description, logo_url, 
+      create_time, status, sys_cust_id, 
+      parent_cust_id, remain_count, insert_user, 
+      delete_user, send_json, res_json
+      )
+    values (#{id,jdbcType=INTEGER}, #{cardId,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, 
+      #{money,jdbcType=INTEGER}, #{origin,jdbcType=INTEGER}, #{term,jdbcType=INTEGER}, 
+      #{brandName,jdbcType=VARCHAR}, #{servicePhone,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{notice,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{logoUrl,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{sysCustId,jdbcType=INTEGER}, 
+      #{parentCustId,jdbcType=INTEGER}, #{remainCount,jdbcType=INTEGER}, #{insertUser,jdbcType=VARCHAR}, 
+      #{deleteUser,jdbcType=VARCHAR}, #{sendJson,jdbcType=LONGVARCHAR}, #{resJson,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lol.common.model.ds1.CouponListWithBLOBs" >
+    insert into coupon_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cardId != null" >
+        card_id,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="origin != null" >
+        origin,
+      </if>
+      <if test="term != null" >
+        term,
+      </if>
+      <if test="brandName != null" >
+        brand_name,
+      </if>
+      <if test="servicePhone != null" >
+        service_phone,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="notice != null" >
+        notice,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="logoUrl != null" >
+        logo_url,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="sysCustId != null" >
+        sys_cust_id,
+      </if>
+      <if test="parentCustId != null" >
+        parent_cust_id,
+      </if>
+      <if test="remainCount != null" >
+        remain_count,
+      </if>
+      <if test="insertUser != null" >
+        insert_user,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="sendJson != null" >
+        send_json,
+      </if>
+      <if test="resJson != null" >
+        res_json,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cardId != null" >
+        #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="origin != null" >
+        #{origin,jdbcType=INTEGER},
+      </if>
+      <if test="term != null" >
+        #{term,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null" >
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePhone != null" >
+        #{servicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="notice != null" >
+        #{notice,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sysCustId != null" >
+        #{sysCustId,jdbcType=INTEGER},
+      </if>
+      <if test="parentCustId != null" >
+        #{parentCustId,jdbcType=INTEGER},
+      </if>
+      <if test="remainCount != null" >
+        #{remainCount,jdbcType=INTEGER},
+      </if>
+      <if test="insertUser != null" >
+        #{insertUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="sendJson != null" >
+        #{sendJson,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="resJson != null" >
+        #{resJson,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lol.common.model.ds1.CouponListExample" resultType="java.lang.Integer" >
+    select count(*) from coupon_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update coupon_list
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardId != null" >
+        card_id = #{record.cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.count != null" >
+        count = #{record.count,jdbcType=INTEGER},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=INTEGER},
+      </if>
+      <if test="record.origin != null" >
+        origin = #{record.origin,jdbcType=INTEGER},
+      </if>
+      <if test="record.term != null" >
+        term = #{record.term,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandName != null" >
+        brand_name = #{record.brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.servicePhone != null" >
+        service_phone = #{record.servicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notice != null" >
+        notice = #{record.notice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logoUrl != null" >
+        logo_url = #{record.logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.sysCustId != null" >
+        sys_cust_id = #{record.sysCustId,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentCustId != null" >
+        parent_cust_id = #{record.parentCustId,jdbcType=INTEGER},
+      </if>
+      <if test="record.remainCount != null" >
+        remain_count = #{record.remainCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.insertUser != null" >
+        insert_user = #{record.insertUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleteUser != null" >
+        delete_user = #{record.deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendJson != null" >
+        send_json = #{record.sendJson,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.resJson != null" >
+        res_json = #{record.resJson,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update coupon_list
+    set id = #{record.id,jdbcType=INTEGER},
+      card_id = #{record.cardId,jdbcType=VARCHAR},
+      count = #{record.count,jdbcType=INTEGER},
+      money = #{record.money,jdbcType=INTEGER},
+      origin = #{record.origin,jdbcType=INTEGER},
+      term = #{record.term,jdbcType=INTEGER},
+      brand_name = #{record.brandName,jdbcType=VARCHAR},
+      service_phone = #{record.servicePhone,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      notice = #{record.notice,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      logo_url = #{record.logoUrl,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER},
+      sys_cust_id = #{record.sysCustId,jdbcType=INTEGER},
+      parent_cust_id = #{record.parentCustId,jdbcType=INTEGER},
+      remain_count = #{record.remainCount,jdbcType=INTEGER},
+      insert_user = #{record.insertUser,jdbcType=VARCHAR},
+      delete_user = #{record.deleteUser,jdbcType=VARCHAR},
+      send_json = #{record.sendJson,jdbcType=LONGVARCHAR},
+      res_json = #{record.resJson,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update coupon_list
+    set id = #{record.id,jdbcType=INTEGER},
+      card_id = #{record.cardId,jdbcType=VARCHAR},
+      count = #{record.count,jdbcType=INTEGER},
+      money = #{record.money,jdbcType=INTEGER},
+      origin = #{record.origin,jdbcType=INTEGER},
+      term = #{record.term,jdbcType=INTEGER},
+      brand_name = #{record.brandName,jdbcType=VARCHAR},
+      service_phone = #{record.servicePhone,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      notice = #{record.notice,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      logo_url = #{record.logoUrl,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER},
+      sys_cust_id = #{record.sysCustId,jdbcType=INTEGER},
+      parent_cust_id = #{record.parentCustId,jdbcType=INTEGER},
+      remain_count = #{record.remainCount,jdbcType=INTEGER},
+      insert_user = #{record.insertUser,jdbcType=VARCHAR},
+      delete_user = #{record.deleteUser,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lol.common.model.ds1.CouponListWithBLOBs" >
+    update coupon_list
+    <set >
+      <if test="cardId != null" >
+        card_id = #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="origin != null" >
+        origin = #{origin,jdbcType=INTEGER},
+      </if>
+      <if test="term != null" >
+        term = #{term,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null" >
+        brand_name = #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePhone != null" >
+        service_phone = #{servicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="notice != null" >
+        notice = #{notice,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sysCustId != null" >
+        sys_cust_id = #{sysCustId,jdbcType=INTEGER},
+      </if>
+      <if test="parentCustId != null" >
+        parent_cust_id = #{parentCustId,jdbcType=INTEGER},
+      </if>
+      <if test="remainCount != null" >
+        remain_count = #{remainCount,jdbcType=INTEGER},
+      </if>
+      <if test="insertUser != null" >
+        insert_user = #{insertUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="sendJson != null" >
+        send_json = #{sendJson,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="resJson != null" >
+        res_json = #{resJson,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lol.common.model.ds1.CouponListWithBLOBs" >
+    update coupon_list
+    set card_id = #{cardId,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      money = #{money,jdbcType=INTEGER},
+      origin = #{origin,jdbcType=INTEGER},
+      term = #{term,jdbcType=INTEGER},
+      brand_name = #{brandName,jdbcType=VARCHAR},
+      service_phone = #{servicePhone,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      notice = #{notice,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      sys_cust_id = #{sysCustId,jdbcType=INTEGER},
+      parent_cust_id = #{parentCustId,jdbcType=INTEGER},
+      remain_count = #{remainCount,jdbcType=INTEGER},
+      insert_user = #{insertUser,jdbcType=VARCHAR},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      send_json = #{sendJson,jdbcType=LONGVARCHAR},
+      res_json = #{resJson,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lol.common.model.ds1.CouponList" >
+    update coupon_list
+    set card_id = #{cardId,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      money = #{money,jdbcType=INTEGER},
+      origin = #{origin,jdbcType=INTEGER},
+      term = #{term,jdbcType=INTEGER},
+      brand_name = #{brandName,jdbcType=VARCHAR},
+      service_phone = #{servicePhone,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      notice = #{notice,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      sys_cust_id = #{sysCustId,jdbcType=INTEGER},
+      parent_cust_id = #{parentCustId,jdbcType=INTEGER},
+      remain_count = #{remainCount,jdbcType=INTEGER},
+      insert_user = #{insertUser,jdbcType=VARCHAR},
+      delete_user = #{deleteUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <sql id="pagePrefix" >
+    <if test="page != null" >
+      <if test="dialect == 'oracle'" >
+        select * from ( select row_.*, rownum rownum_ from ( 
+      </if>
+    </if>
+  </sql>
+  <sql id="pageSuffix" >
+    <if test="page != null" >
+      <if test="dialect == 'oracle'" >
+        <![CDATA[ ) row_ ) where rownum_ > #{page.start} and rownum_ <= (#{page.start} + #{page.limit}) ]]>
+      </if>
+      <if test="dialect == 'mysql'" >
+        limit #{page.start} , #{page.limit}
+      </if>
+    </if>
+  </sql>
+</mapper>

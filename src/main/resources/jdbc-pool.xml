@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+
+	<!-- ds0 -->
+	<bean id="ds0" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">  
+	    <property name="poolProperties">  
+	        <bean class="org.apache.tomcat.jdbc.pool.PoolProperties">  
+<!-- 	        <property name="url" value="jdbc:mysql://10.8.8.60:3300/ds0?characterEncoding=utf-8"/>   -->
+	            <property name="url" value="jdbc:mysql://10.0.0.21:3306/ds0?characterEncoding=utf-8"/>  
+	            <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+<!-- 	            <property name="username" value="dsapp" /> -->
+<!-- 				<property name="password" value="dongsport!@#$" /> -->
+	            <property name="username" value="root"/>  
+	            <property name="password" value="dongsport"/>  
+	            <property name="jmxEnabled" value="false"/>  
+	            <property name="testWhileIdle" value="true"/>  
+	            <property name="testOnBorrow" value="true"/>  
+	            <property name="testOnReturn" value="false"/>  
+	            <property name="validationQuery" value="select 1 from dual"/>  
+	            <property name="validationInterval" value="60000"/>  
+	            <property name="timeBetweenEvictionRunsMillis" value="60000"/>  
+	            <property name="maxActive" value="50"/>  
+	            <property name="minIdle" value="5"/>  
+	            <property name="maxIdle" value="20"/>  
+	            <property name="initialSize" value="5"/>  
+	            <property name="maxWait" value="60000"/>  
+	            <property name="removeAbandonedTimeout" value="120"/>  
+	            <property name="removeAbandoned" value="false"/>  
+	            <property name="logAbandoned" value="true"/>
+	            <property name="minEvictableIdleTimeMillis" value="60000"/>  
+	            <property name="jdbcInterceptors" value="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"/>  
+	        </bean>  
+	    </property>  
+	</bean>
+	
+	<!-- 用于非mybatis的jdbc操作-->
+	<bean id="jdbcTemplateForDs0" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="ds0"/>
+	</bean>
+	
+	<!-- 实现化Mybatis工厂  -->
+	<bean id="sqlSessionFactoryDs0" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- Mybatis操作数据库  DataSource -->
+		<property name="dataSource" ref="ds0"/>
+		<property name="configurationProperties">
+			<props>
+				<prop key="cacheEnabled">true</prop>
+				<prop key="callSettersOnNulls">true</prop>
+				<prop key="lazyLoadingEnabled">false</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 扫描mybatis 对象所在包 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryDs0"/>
+		<!-- 指定 Dao所在包 -->
+		<property name="basePackage" value="com.lol.common.mapper.ds0"/>
+	</bean>
+	
+	<!-- Spring 事务   -->
+	<bean id="transactionManagerDs0" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds0"></property>
+		<qualifier value="tmDs0" />  
+	</bean>
+	
+	<!-- 开启注解事务 -->
+	<tx:annotation-driven transaction-manager="transactionManagerDs0"/>
+	
+	<!-- ds1 -->
+	<bean id="ds1" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">  
+	    <property name="poolProperties">  
+	        <bean class="org.apache.tomcat.jdbc.pool.PoolProperties">  
+	            <property name="url" value="jdbc:mysql://10.0.0.21:3306/ds1?characterEncoding=utf-8"/>  
+	            <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	            <property name="username" value="root"/>  
+	            <property name="password" value="dongsport"/>  
+	            <property name="jmxEnabled" value="false"/>  
+	            <property name="testWhileIdle" value="true"/>  
+	            <property name="testOnBorrow" value="true"/>  
+	            <property name="testOnReturn" value="false"/>  
+	            <property name="validationQuery" value="select 1 from dual"/>  
+	            <property name="validationInterval" value="60000"/>  
+	            <property name="timeBetweenEvictionRunsMillis" value="60000"/>  
+	            <property name="maxActive" value="50"/>  
+	            <property name="minIdle" value="10"/>  
+	            <property name="maxIdle" value="20"/>  
+	            <property name="initialSize" value="10"/>  
+	            <property name="maxWait" value="60000"/>  
+	            <property name="removeAbandonedTimeout" value="120"/>  
+	            <property name="removeAbandoned" value="false"/>  
+	            <property name="logAbandoned" value="true"/>
+	            <property name="minEvictableIdleTimeMillis" value="60000"/>  
+	            <property name="jdbcInterceptors" value="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"/>  
+	        </bean>  
+	    </property>  
+	</bean>
+	
+	<!-- 用于非mybatis的jdbc操作-->
+	<bean id="jdbcTemplateForDs1" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="ds1"/>
+	</bean>
+	
+	<!-- 实现化Mybatis工厂  -->
+	<bean id="sqlSessionFactoryDs1" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- Mybatis操作数据库  DataSource -->
+		<property name="dataSource" ref="ds1"/>
+		<property name="configurationProperties">
+			<props>
+				<prop key="cacheEnabled">true</prop>
+				<prop key="callSettersOnNulls">true</prop>
+				<prop key="lazyLoadingEnabled">false</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 扫描mybatis 对象所在包 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryDs1"/>
+		<!-- 指定 Dao所在包 -->
+		<property name="basePackage" value="com.lol.common.mapper.ds1"/>
+	</bean>
+	
+	<!-- Spring 事务管理器   -->
+	<bean id="transactionManagerDs1" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds1"></property>
+		<qualifier value="tmDs1" />  
+	</bean>
+	
+	<!-- Spring 事务模板   -->
+	<bean id="transactionTemplateForDs1" class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="transactionManagerDs1"/>
+	</bean>
+	
+	<!-- 开启注解事务 -->
+	<tx:annotation-driven transaction-manager="transactionManagerDs1"/>
+	
+	
+	<!-- merchant -->
+	<bean id="merchant" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">  
+	    <property name="poolProperties">  
+	        <bean class="org.apache.tomcat.jdbc.pool.PoolProperties">  
+	            <property name="url" value="jdbc:mysql://10.0.0.21:3306/merchant?characterEncoding=utf-8"/>  
+	            <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	            <property name="username" value="root"/>  
+	            <property name="password" value="dongsport"/>  
+	            <property name="jmxEnabled" value="false"/>  
+	            <property name="testWhileIdle" value="true"/>  
+	            <property name="testOnBorrow" value="true"/>  
+	            <property name="testOnReturn" value="false"/>  
+	            <property name="validationQuery" value="select 1 from dual"/>  
+	            <property name="validationInterval" value="60000"/>  
+	            <property name="timeBetweenEvictionRunsMillis" value="60000"/>  
+	            <property name="maxActive" value="50"/>  
+	            <property name="minIdle" value="5"/>  
+	            <property name="maxIdle" value="20"/>  
+	            <property name="initialSize" value="5"/>  
+	            <property name="maxWait" value="60000"/>  
+	            <property name="removeAbandonedTimeout" value="120"/>  
+	            <property name="removeAbandoned" value="false"/>  
+	            <property name="logAbandoned" value="true"/>
+	            <property name="minEvictableIdleTimeMillis" value="60000"/>  
+	            <property name="jdbcInterceptors" value="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"/>  
+	        </bean>  
+	    </property>  
+	</bean>
+	
+	<!-- 用于非mybatis的jdbc操作-->
+	<bean id="jdbcTemplateForMerchant" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="merchant"/>
+	</bean>
+	
+	<!-- 实现化Mybatis工厂  -->
+	<bean id="sqlSessionFactoryMerchant" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- Mybatis操作数据库  DataSource -->
+		<property name="dataSource" ref="merchant"/>
+		<property name="configurationProperties">
+			<props>
+				<prop key="cacheEnabled">true</prop>
+				<prop key="callSettersOnNulls">true</prop>
+				<prop key="lazyLoadingEnabled">false</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 扫描mybatis 对象所在包 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryMerchant"/>
+		<!-- 指定 Dao所在包 -->
+		<property name="basePackage" value="com.lol.common.mapper.merchant"/>
+	</bean>
+	
+	<!-- Spring 事务   -->
+	<bean id="transactionManagerMerchant" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="merchant"></property>
+		<qualifier value="tmMerchant" />  
+	</bean>
+	
+	<!-- 开启注解事务 -->
+	<tx:annotation-driven transaction-manager="transactionManagerMerchant"/>
+	
+	
+	
+
+</beans>

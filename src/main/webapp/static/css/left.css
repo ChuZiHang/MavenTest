@@ -1,0 +1,77 @@
+/*-------Left Navigation Bar Css-------*/
+.leftNavigation{
+    background: #2472a9;
+    width: 180px;
+    position: absolute;
+    height: 100%;
+    padding: 25px 0;
+    left: 0;
+    top: 0;
+}
+.color66{
+    color: #666;
+}
+.navtree li{
+    cursor: pointer;
+}
+.navtree li .navtreeTitle{
+    padding-left: 50px;
+    position: relative;
+    height:50px;
+    line-height:50px;
+    color: #c9d4f6;
+}
+.navtree li .navtreeTitle:hover{
+    color:#f8b500;
+}
+.navtree li i{
+    display: block;
+    position: absolute;
+    top:16px;
+    left: 18px;
+
+}
+.yel{
+    color: #f8b500;
+}
+.childNav{
+    display: none;
+    color: #999;
+    padding: 10px 0 10px 0;
+    background:rgba(255,255,255,.1);
+}
+.childNav p{
+    line-height: 38px;
+}
+
+.childNav p a{
+    color:rgba(201,212,246,.6);
+    display: block;
+    padding-left:60px;
+}
+
+.navtreeTitle em{
+    display: block;
+    position: absolute;
+    right: 15px;
+    top:20px;
+    width: 10px;
+    height: 10px;
+    background: url("../images/jia.png");
+}
+.navtreeTitle em.on{
+    background: url("../images/jian.png");
+}
+
+.rightContent{
+    width: 100%;
+    min-height: 720px;
+    padding-bottom: 150px;
+}
+.childNav .posnav{
+    background: #f8b500;
+}
+.childNav .posnav a{
+    color: #fff;
+}
+#imghead {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}

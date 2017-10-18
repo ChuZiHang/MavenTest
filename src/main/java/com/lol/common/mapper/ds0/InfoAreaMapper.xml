@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lol.common.mapper.ds0.InfoAreaMapper" >
+  <resultMap id="BaseResultMap" type="com.lol.common.model.ds0.InfoArea" >
+    <id column="TREE_ID" property="treeId" jdbcType="INTEGER" />
+    <result column="TREE_NAME" property="treeName" jdbcType="VARCHAR" />
+    <result column="PARENTID" property="parentid" jdbcType="INTEGER" />
+    <result column="ISLEAF" property="isleaf" jdbcType="INTEGER" />
+    <result column="ENT_ID" property="entId" jdbcType="INTEGER" />
+    <result column="TREE_TYPE" property="treeType" jdbcType="INTEGER" />
+    <result column="SEQID" property="seqid" jdbcType="INTEGER" />
+    <result column="MAPIMG" property="mapimg" jdbcType="VARCHAR" />
+    <result column="GUIDE" property="guide" jdbcType="VARCHAR" />
+    <result column="ENGNAME" property="engname" jdbcType="VARCHAR" />
+    <result column="HREF" property="href" jdbcType="VARCHAR" />
+    <result column="SPACE" property="space" jdbcType="INTEGER" />
+    <result column="POPULATION" property="population" jdbcType="INTEGER" />
+    <result column="POSTCODE" property="postcode" jdbcType="VARCHAR" />
+    <result column="AREACODE" property="areacode" jdbcType="VARCHAR" />
+    <result column="ISOPEN" property="isopen" jdbcType="INTEGER" />
+    <result column="AREA_NAME" property="areaName" jdbcType="VARCHAR" />
+    <result column="MAP_POINT" property="mapPoint" jdbcType="VARCHAR" />
+    <result column="AIRPORT" property="airport" jdbcType="VARCHAR" />
+    <result column="P_ID" property="pId" jdbcType="INTEGER" />
+    <result column="SPELL" property="spell" jdbcType="VARCHAR" />
+    <result column="SHORT_SPELL" property="shortSpell" jdbcType="VARCHAR" />
+    <result column="LONGITUDE" property="longitude" jdbcType="DOUBLE" />
+    <result column="LATITUDE" property="latitude" jdbcType="DOUBLE" />
+    <result column="VIEW_COUNT" property="viewCount" jdbcType="INTEGER" />
+    <result column="TICKET_SALE_NUM" property="ticketSaleNum" jdbcType="VARCHAR" />
+    <result column="TICKET_VIEW_NUM" property="ticketViewNum" jdbcType="INTEGER" />
+    <result column="ABB_ENG" property="abbEng" jdbcType="VARCHAR" />
+    <result column="SIGN_IMG" property="signImg" jdbcType="VARCHAR" />
+    <result column="IMG" property="img" jdbcType="VARCHAR" />
+    <result column="AREAPATH" property="areapath" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.lol.common.model.ds0.InfoAreaWithBLOBs" extends="BaseResultMap" >
+    <result column="MAPCONTENT" property="mapcontent" jdbcType="LONGVARCHAR" />
+    <result column="ENGDESC" property="engdesc" jdbcType="LONGVARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    TREE_ID, TREE_NAME, PARENTID, ISLEAF, ENT_ID, TREE_TYPE, SEQID, MAPIMG, GUIDE, ENGNAME, 
+    HREF, SPACE, POPULATION, POSTCODE, AREACODE, ISOPEN, AREA_NAME, MAP_POINT, AIRPORT, 
+    P_ID, SPELL, SHORT_SPELL, LONGITUDE, LATITUDE, VIEW_COUNT, TICKET_SALE_NUM, TICKET_VIEW_NUM, 
+    ABB_ENG, SIGN_IMG, IMG, AREAPATH
+  </sql>
+  <sql id="Blob_Column_List" >
+    MAPCONTENT, ENGDESC, DESCRIPTION
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.lol.common.model.ds0.InfoAreaExample" >
+    <include refid="pagePrefix" />
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from info_area
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="pageSuffix" />
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lol.common.model.ds0.InfoAreaExample" >
+    <include refid="pagePrefix" />
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from info_area
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="pageSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from info_area
+    where TREE_ID = #{treeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from info_area
+    where TREE_ID = #{treeId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lol.common.model.ds0.InfoAreaExample" >
+    delete from info_area
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lol.common.model.ds0.InfoAreaWithBLOBs" >
+    insert into info_area (TREE_ID, TREE_NAME, PARENTID, 
+      ISLEAF, ENT_ID, TREE_TYPE, 
+      SEQID, MAPIMG, GUIDE, 
+      ENGNAME, HREF, SPACE, 
+      POPULATION, POSTCODE, AREACODE, 
+      ISOPEN, AREA_NAME, MAP_POINT, 
+      AIRPORT, P_ID, SPELL, 
+      SHORT_SPELL, LONGITUDE, LATITUDE, 
+      VIEW_COUNT, TICKET_SALE_NUM, TICKET_VIEW_NUM, 
+      ABB_ENG, SIGN_IMG, IMG, 
+      AREAPATH, MAPCONTENT, ENGDESC, 
+      DESCRIPTION)
+    values (#{treeId,jdbcType=INTEGER}, #{treeName,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, 
+      #{isleaf,jdbcType=INTEGER}, #{entId,jdbcType=INTEGER}, #{treeType,jdbcType=INTEGER}, 
+      #{seqid,jdbcType=INTEGER}, #{mapimg,jdbcType=VARCHAR}, #{guide,jdbcType=VARCHAR}, 
+      #{engname,jdbcType=VARCHAR}, #{href,jdbcType=VARCHAR}, #{space,jdbcType=INTEGER}, 
+      #{population,jdbcType=INTEGER}, #{postcode,jdbcType=VARCHAR}, #{areacode,jdbcType=VARCHAR}, 
+      #{isopen,jdbcType=INTEGER}, #{areaName,jdbcType=VARCHAR}, #{mapPoint,jdbcType=VARCHAR}, 
+      #{airport,jdbcType=VARCHAR}, #{pId,jdbcType=INTEGER}, #{spell,jdbcType=VARCHAR}, 
+      #{shortSpell,jdbcType=VARCHAR}, #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, 
+      #{viewCount,jdbcType=INTEGER}, #{ticketSaleNum,jdbcType=VARCHAR}, #{ticketViewNum,jdbcType=INTEGER}, 
+      #{abbEng,jdbcType=VARCHAR}, #{signImg,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, 
+      #{areapath,jdbcType=VARCHAR}, #{mapcontent,jdbcType=LONGVARCHAR}, #{engdesc,jdbcType=LONGVARCHAR}, 
+      #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lol.common.model.ds0.InfoAreaWithBLOBs" >
+    insert into info_area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="treeId != null" >
+        TREE_ID,
+      </if>
+      <if test="treeName != null" >
+        TREE_NAME,
+      </if>
+      <if test="parentid != null" >
+        PARENTID,
+      </if>
+      <if test="isleaf != null" >
+        ISLEAF,
+      </if>
+      <if test="entId != null" >
+        ENT_ID,
+      </if>
+      <if test="treeType != null" >
+        TREE_TYPE,
+      </if>
+      <if test="seqid != null" >
+        SEQID,
+      </if>
+      <if test="mapimg != null" >
+        MAPIMG,
+      </if>
+      <if test="guide != null" >
+        GUIDE,
+      </if>
+      <if test="engname != null" >
+        ENGNAME,
+      </if>
+      <if test="href != null" >
+        HREF,
+      </if>
+      <if test="space != null" >
+        SPACE,
+      </if>
+      <if test="population != null" >
+        POPULATION,
+      </if>
+      <if test="postcode != null" >
+        POSTCODE,
+      </if>
+      <if test="areacode != null" >
+        AREACODE,
+      </if>
+      <if test="isopen != null" >
+        ISOPEN,
+      </if>
+      <if test="areaName != null" >
+        AREA_NAME,
+      </if>
+      <if test="mapPoint != null" >
+        MAP_POINT,
+      </if>
+      <if test="airport != null" >
+        AIRPORT,
+      </if>
+      <if test="pId != null" >
+        P_ID,
+      </if>
+      <if test="spell != null" >
+        SPELL,
+      </if>
+      <if test="shortSpell != null" >
+        SHORT_SPELL,
+      </if>
+      <if test="longitude != null" >
+        LONGITUDE,
+      </if>
+      <if test="latitude != null" >
+        LATITUDE,
+      </if>
+      <if test="viewCount != null" >
+        VIEW_COUNT,
+      </if>
+      <if test="ticketSaleNum != null" >
+        TICKET_SALE_NUM,
+      </if>
+      <if test="ticketViewNum != null" >
+        TICKET_VIEW_NUM,
+      </if>
+      <if test="abbEng != null" >
+        ABB_ENG,
+      </if>
+      <if test="signImg != null" >
+        SIGN_IMG,
+      </if>
+      <if test="img != null" >
+        IMG,
+      </if>
+      <if test="areapath != null" >
+        AREAPATH,
+      </if>
+      <if test="mapcontent != null" >
+        MAPCONTENT,
+      </if>
+      <if test="engdesc != null" >
+        ENGDESC,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="treeId != null" >
+        #{treeId,jdbcType=INTEGER},
+      </if>
+      <if test="treeName != null" >
+        #{treeName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="isleaf != null" >
+        #{isleaf,jdbcType=INTEGER},
+      </if>
+      <if test="entId != null" >
+        #{entId,jdbcType=INTEGER},
+      </if>
+      <if test="treeType != null" >
+        #{treeType,jdbcType=INTEGER},
+      </if>
+      <if test="seqid != null" >
+        #{seqid,jdbcType=INTEGER},
+      </if>
+      <if test="mapimg != null" >
+        #{mapimg,jdbcType=VARCHAR},
+      </if>
+      <if test="guide != null" >
+        #{guide,jdbcType=VARCHAR},
+      </if>
+      <if test="engname != null" >
+        #{engname,jdbcType=VARCHAR},
+      </if>
+      <if test="href != null" >
+        #{href,jdbcType=VARCHAR},
+      </if>
+      <if test="space != null" >
+        #{space,jdbcType=INTEGER},
+      </if>
+      <if test="population != null" >
+        #{population,jdbcType=INTEGER},
+      </if>
+      <if test="postcode != null" >
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="areacode != null" >
+        #{areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="isopen != null" >
+        #{isopen,jdbcType=INTEGER},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="mapPoint != null" >
+        #{mapPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="airport != null" >
+        #{airport,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null" >
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="spell != null" >
+        #{spell,jdbcType=VARCHAR},
+      </if>
+      <if test="shortSpell != null" >
+        #{shortSpell,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="viewCount != null" >
+        #{viewCount,jdbcType=INTEGER},
+      </if>
+      <if test="ticketSaleNum != null" >
+        #{ticketSaleNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketViewNum != null" >
+        #{ticketViewNum,jdbcType=INTEGER},
+      </if>
+      <if test="abbEng != null" >
+        #{abbEng,jdbcType=VARCHAR},
+      </if>
+      <if test="signImg != null" >
+        #{signImg,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="areapath != null" >
+        #{areapath,jdbcType=VARCHAR},
+      </if>
+      <if test="mapcontent != null" >
+        #{mapcontent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="engdesc != null" >
+        #{engdesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lol.common.model.ds0.InfoAreaExample" resultType="java.lang.Integer" >
+    select count(*) from info_area
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update info_area
+    <set >
+      <if test="record.treeId != null" >
+        TREE_ID = #{record.treeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.treeName != null" >
+        TREE_NAME = #{record.treeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentid != null" >
+        PARENTID = #{record.parentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.isleaf != null" >
+        ISLEAF = #{record.isleaf,jdbcType=INTEGER},
+      </if>
+      <if test="record.entId != null" >
+        ENT_ID = #{record.entId,jdbcType=INTEGER},
+      </if>
+      <if test="record.treeType != null" >
+        TREE_TYPE = #{record.treeType,jdbcType=INTEGER},
+      </if>
+      <if test="record.seqid != null" >
+        SEQID = #{record.seqid,jdbcType=INTEGER},
+      </if>
+      <if test="record.mapimg != null" >
+        MAPIMG = #{record.mapimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guide != null" >
+        GUIDE = #{record.guide,jdbcType=VARCHAR},
+      </if>
+      <if test="record.engname != null" >
+        ENGNAME = #{record.engname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.href != null" >
+        HREF = #{record.href,jdbcType=VARCHAR},
+      </if>
+      <if test="record.space != null" >
+        SPACE = #{record.space,jdbcType=INTEGER},
+      </if>
+      <if test="record.population != null" >
+        POPULATION = #{record.population,jdbcType=INTEGER},
+      </if>
+      <if test="record.postcode != null" >
+        POSTCODE = #{record.postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areacode != null" >
+        AREACODE = #{record.areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isopen != null" >
+        ISOPEN = #{record.isopen,jdbcType=INTEGER},
+      </if>
+      <if test="record.areaName != null" >
+        AREA_NAME = #{record.areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mapPoint != null" >
+        MAP_POINT = #{record.mapPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.airport != null" >
+        AIRPORT = #{record.airport,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pId != null" >
+        P_ID = #{record.pId,jdbcType=INTEGER},
+      </if>
+      <if test="record.spell != null" >
+        SPELL = #{record.spell,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shortSpell != null" >
+        SHORT_SPELL = #{record.shortSpell,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longitude != null" >
+        LONGITUDE = #{record.longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.latitude != null" >
+        LATITUDE = #{record.latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.viewCount != null" >
+        VIEW_COUNT = #{record.viewCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.ticketSaleNum != null" >
+        TICKET_SALE_NUM = #{record.ticketSaleNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketViewNum != null" >
+        TICKET_VIEW_NUM = #{record.ticketViewNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.abbEng != null" >
+        ABB_ENG = #{record.abbEng,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signImg != null" >
+        SIGN_IMG = #{record.signImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.img != null" >
+        IMG = #{record.img,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areapath != null" >
+        AREAPATH = #{record.areapath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mapcontent != null" >
+        MAPCONTENT = #{record.mapcontent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.engdesc != null" >
+        ENGDESC = #{record.engdesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.description != null" >
+        DESCRIPTION = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update info_area
+    set TREE_ID = #{record.treeId,jdbcType=INTEGER},
+      TREE_NAME = #{record.treeName,jdbcType=VARCHAR},
+      PARENTID = #{record.parentid,jdbcType=INTEGER},
+      ISLEAF = #{record.isleaf,jdbcType=INTEGER},
+      ENT_ID = #{record.entId,jdbcType=INTEGER},
+      TREE_TYPE = #{record.treeType,jdbcType=INTEGER},
+      SEQID = #{record.seqid,jdbcType=INTEGER},
+      MAPIMG = #{record.mapimg,jdbcType=VARCHAR},
+      GUIDE = #{record.guide,jdbcType=VARCHAR},
+      ENGNAME = #{record.engname,jdbcType=VARCHAR},
+      HREF = #{record.href,jdbcType=VARCHAR},
+      SPACE = #{record.space,jdbcType=INTEGER},
+      POPULATION = #{record.population,jdbcType=INTEGER},
+      POSTCODE = #{record.postcode,jdbcType=VARCHAR},
+      AREACODE = #{record.areacode,jdbcType=VARCHAR},
+      ISOPEN = #{record.isopen,jdbcType=INTEGER},
+      AREA_NAME = #{record.areaName,jdbcType=VARCHAR},
+      MAP_POINT = #{record.mapPoint,jdbcType=VARCHAR},
+      AIRPORT = #{record.airport,jdbcType=VARCHAR},
+      P_ID = #{record.pId,jdbcType=INTEGER},
+      SPELL = #{record.spell,jdbcType=VARCHAR},
+      SHORT_SPELL = #{record.shortSpell,jdbcType=VARCHAR},
+      LONGITUDE = #{record.longitude,jdbcType=DOUBLE},
+      LATITUDE = #{record.latitude,jdbcType=DOUBLE},
+      VIEW_COUNT = #{record.viewCount,jdbcType=INTEGER},
+      TICKET_SALE_NUM = #{record.ticketSaleNum,jdbcType=VARCHAR},
+      TICKET_VIEW_NUM = #{record.ticketViewNum,jdbcType=INTEGER},
+      ABB_ENG = #{record.abbEng,jdbcType=VARCHAR},
+      SIGN_IMG = #{record.signImg,jdbcType=VARCHAR},
+      IMG = #{record.img,jdbcType=VARCHAR},
+      AREAPATH = #{record.areapath,jdbcType=VARCHAR},
+      MAPCONTENT = #{record.mapcontent,jdbcType=LONGVARCHAR},
+      ENGDESC = #{record.engdesc,jdbcType=LONGVARCHAR},
+      DESCRIPTION = #{record.description,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update info_area
+    set TREE_ID = #{record.treeId,jdbcType=INTEGER},
+      TREE_NAME = #{record.treeName,jdbcType=VARCHAR},
+      PARENTID = #{record.parentid,jdbcType=INTEGER},
+      ISLEAF = #{record.isleaf,jdbcType=INTEGER},
+      ENT_ID = #{record.entId,jdbcType=INTEGER},
+      TREE_TYPE = #{record.treeType,jdbcType=INTEGER},
+      SEQID = #{record.seqid,jdbcType=INTEGER},
+      MAPIMG = #{record.mapimg,jdbcType=VARCHAR},
+      GUIDE = #{record.guide,jdbcType=VARCHAR},
+      ENGNAME = #{record.engname,jdbcType=VARCHAR},
+      HREF = #{record.href,jdbcType=VARCHAR},
+      SPACE = #{record.space,jdbcType=INTEGER},
+      POPULATION = #{record.population,jdbcType=INTEGER},
+      POSTCODE = #{record.postcode,jdbcType=VARCHAR},
+      AREACODE = #{record.areacode,jdbcType=VARCHAR},
+      ISOPEN = #{record.isopen,jdbcType=INTEGER},
+      AREA_NAME = #{record.areaName,jdbcType=VARCHAR},
+      MAP_POINT = #{record.mapPoint,jdbcType=VARCHAR},
+      AIRPORT = #{record.airport,jdbcType=VARCHAR},
+      P_ID = #{record.pId,jdbcType=INTEGER},
+      SPELL = #{record.spell,jdbcType=VARCHAR},
+      SHORT_SPELL = #{record.shortSpell,jdbcType=VARCHAR},
+      LONGITUDE = #{record.longitude,jdbcType=DOUBLE},
+      LATITUDE = #{record.latitude,jdbcType=DOUBLE},
+      VIEW_COUNT = #{record.viewCount,jdbcType=INTEGER},
+      TICKET_SALE_NUM = #{record.ticketSaleNum,jdbcType=VARCHAR},
+      TICKET_VIEW_NUM = #{record.ticketViewNum,jdbcType=INTEGER},
+      ABB_ENG = #{record.abbEng,jdbcType=VARCHAR},
+      SIGN_IMG = #{record.signImg,jdbcType=VARCHAR},
+      IMG = #{record.img,jdbcType=VARCHAR},
+      AREAPATH = #{record.areapath,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lol.common.model.ds0.InfoAreaWithBLOBs" >
+    update info_area
+    <set >
+      <if test="treeName != null" >
+        TREE_NAME = #{treeName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        PARENTID = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="isleaf != null" >
+        ISLEAF = #{isleaf,jdbcType=INTEGER},
+      </if>
+      <if test="entId != null" >
+        ENT_ID = #{entId,jdbcType=INTEGER},
+      </if>
+      <if test="treeType != null" >
+        TREE_TYPE = #{treeType,jdbcType=INTEGER},
+      </if>
+      <if test="seqid != null" >
+        SEQID = #{seqid,jdbcType=INTEGER},
+      </if>
+      <if test="mapimg != null" >
+        MAPIMG = #{mapimg,jdbcType=VARCHAR},
+      </if>
+      <if test="guide != null" >
+        GUIDE = #{guide,jdbcType=VARCHAR},
+      </if>
+      <if test="engname != null" >
+        ENGNAME = #{engname,jdbcType=VARCHAR},
+      </if>
+      <if test="href != null" >
+        HREF = #{href,jdbcType=VARCHAR},
+      </if>
+      <if test="space != null" >
+        SPACE = #{space,jdbcType=INTEGER},
+      </if>
+      <if test="population != null" >
+        POPULATION = #{population,jdbcType=INTEGER},
+      </if>
+      <if test="postcode != null" >
+        POSTCODE = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="areacode != null" >
+        AREACODE = #{areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="isopen != null" >
+        ISOPEN = #{isopen,jdbcType=INTEGER},
+      </if>
+      <if test="areaName != null" >
+        AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="mapPoint != null" >
+        MAP_POINT = #{mapPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="airport != null" >
+        AIRPORT = #{airport,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null" >
+        P_ID = #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="spell != null" >
+        SPELL = #{spell,jdbcType=VARCHAR},
+      </if>
+      <if test="shortSpell != null" >
+        SHORT_SPELL = #{shortSpell,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        LONGITUDE = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        LATITUDE = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="viewCount != null" >
+        VIEW_COUNT = #{viewCount,jdbcType=INTEGER},
+      </if>
+      <if test="ticketSaleNum != null" >
+        TICKET_SALE_NUM = #{ticketSaleNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketViewNum != null" >
+        TICKET_VIEW_NUM = #{ticketViewNum,jdbcType=INTEGER},
+      </if>
+      <if test="abbEng != null" >
+        ABB_ENG = #{abbEng,jdbcType=VARCHAR},
+      </if>
+      <if test="signImg != null" >
+        SIGN_IMG = #{signImg,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        IMG = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="areapath != null" >
+        AREAPATH = #{areapath,jdbcType=VARCHAR},
+      </if>
+      <if test="mapcontent != null" >
+        MAPCONTENT = #{mapcontent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="engdesc != null" >
+        ENGDESC = #{engdesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where TREE_ID = #{treeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lol.common.model.ds0.InfoAreaWithBLOBs" >
+    update info_area
+    set TREE_NAME = #{treeName,jdbcType=VARCHAR},
+      PARENTID = #{parentid,jdbcType=INTEGER},
+      ISLEAF = #{isleaf,jdbcType=INTEGER},
+      ENT_ID = #{entId,jdbcType=INTEGER},
+      TREE_TYPE = #{treeType,jdbcType=INTEGER},
+      SEQID = #{seqid,jdbcType=INTEGER},
+      MAPIMG = #{mapimg,jdbcType=VARCHAR},
+      GUIDE = #{guide,jdbcType=VARCHAR},
+      ENGNAME = #{engname,jdbcType=VARCHAR},
+      HREF = #{href,jdbcType=VARCHAR},
+      SPACE = #{space,jdbcType=INTEGER},
+      POPULATION = #{population,jdbcType=INTEGER},
+      POSTCODE = #{postcode,jdbcType=VARCHAR},
+      AREACODE = #{areacode,jdbcType=VARCHAR},
+      ISOPEN = #{isopen,jdbcType=INTEGER},
+      AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      MAP_POINT = #{mapPoint,jdbcType=VARCHAR},
+      AIRPORT = #{airport,jdbcType=VARCHAR},
+      P_ID = #{pId,jdbcType=INTEGER},
+      SPELL = #{spell,jdbcType=VARCHAR},
+      SHORT_SPELL = #{shortSpell,jdbcType=VARCHAR},
+      LONGITUDE = #{longitude,jdbcType=DOUBLE},
+      LATITUDE = #{latitude,jdbcType=DOUBLE},
+      VIEW_COUNT = #{viewCount,jdbcType=INTEGER},
+      TICKET_SALE_NUM = #{ticketSaleNum,jdbcType=VARCHAR},
+      TICKET_VIEW_NUM = #{ticketViewNum,jdbcType=INTEGER},
+      ABB_ENG = #{abbEng,jdbcType=VARCHAR},
+      SIGN_IMG = #{signImg,jdbcType=VARCHAR},
+      IMG = #{img,jdbcType=VARCHAR},
+      AREAPATH = #{areapath,jdbcType=VARCHAR},
+      MAPCONTENT = #{mapcontent,jdbcType=LONGVARCHAR},
+      ENGDESC = #{engdesc,jdbcType=LONGVARCHAR},
+      DESCRIPTION = #{description,jdbcType=LONGVARCHAR}
+    where TREE_ID = #{treeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lol.common.model.ds0.InfoArea" >
+    update info_area
+    set TREE_NAME = #{treeName,jdbcType=VARCHAR},
+      PARENTID = #{parentid,jdbcType=INTEGER},
+      ISLEAF = #{isleaf,jdbcType=INTEGER},
+      ENT_ID = #{entId,jdbcType=INTEGER},
+      TREE_TYPE = #{treeType,jdbcType=INTEGER},
+      SEQID = #{seqid,jdbcType=INTEGER},
+      MAPIMG = #{mapimg,jdbcType=VARCHAR},
+      GUIDE = #{guide,jdbcType=VARCHAR},
+      ENGNAME = #{engname,jdbcType=VARCHAR},
+      HREF = #{href,jdbcType=VARCHAR},
+      SPACE = #{space,jdbcType=INTEGER},
+      POPULATION = #{population,jdbcType=INTEGER},
+      POSTCODE = #{postcode,jdbcType=VARCHAR},
+      AREACODE = #{areacode,jdbcType=VARCHAR},
+      ISOPEN = #{isopen,jdbcType=INTEGER},
+      AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      MAP_POINT = #{mapPoint,jdbcType=VARCHAR},
+      AIRPORT = #{airport,jdbcType=VARCHAR},
+      P_ID = #{pId,jdbcType=INTEGER},
+      SPELL = #{spell,jdbcType=VARCHAR},
+      SHORT_SPELL = #{shortSpell,jdbcType=VARCHAR},
+      LONGITUDE = #{longitude,jdbcType=DOUBLE},
+      LATITUDE = #{latitude,jdbcType=DOUBLE},
+      VIEW_COUNT = #{viewCount,jdbcType=INTEGER},
+      TICKET_SALE_NUM = #{ticketSaleNum,jdbcType=VARCHAR},
+      TICKET_VIEW_NUM = #{ticketViewNum,jdbcType=INTEGER},
+      ABB_ENG = #{abbEng,jdbcType=VARCHAR},
+      SIGN_IMG = #{signImg,jdbcType=VARCHAR},
+      IMG = #{img,jdbcType=VARCHAR},
+      AREAPATH = #{areapath,jdbcType=VARCHAR}
+    where TREE_ID = #{treeId,jdbcType=INTEGER}
+  </update>
+  <sql id="pagePrefix" >
+    <if test="page != null" >
+      <if test="dialect == 'oracle'" >
+        select * from ( select row_.*, rownum rownum_ from ( 
+      </if>
+    </if>
+  </sql>
+  <sql id="pageSuffix" >
+    <if test="page != null" >
+      <if test="dialect == 'oracle'" >
+        <![CDATA[ ) row_ ) where rownum_ > #{page.start} and rownum_ <= (#{page.start} + #{page.limit}) ]]>
+      </if>
+      <if test="dialect == 'mysql'" >
+        limit #{page.start} , #{page.limit}
+      </if>
+    </if>
+  </sql>
+</mapper>

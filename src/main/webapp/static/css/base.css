@@ -1,0 +1,152 @@
+html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd, form, fieldset, legend, input, select, textarea, button, caption, th, td, blockquote, pre {
+    margin: 0;
+    padding: 0
+}
+body {
+    color: #333;
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    font-size: 12px;
+}
+input, select, textarea, button {
+    vertical-align: middle;
+    font-size: 100%;
+    outline: 0;
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+
+}
+input{
+    margin-right: 10px;
+}
+h1, h2, h3, h4, h5, h6, strong, th{
+    font-weight: 400
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: 14px;
+    line-height: 24px
+}
+li {
+    list-style: none
+}
+table {
+    border-spacing: 0
+}
+caption, th {
+    text-align: left
+}
+fieldset, img {
+    border: 0
+}
+address, cite, dfn, em, var, i {
+    font-style: normal
+}
+code, dfn, kbd, samp, tt, var, pre {
+    font-family: monospace
+}
+
+small {
+    font-size: 100%
+}
+img {
+    border: 0
+}
+a {
+    color:#005bb5;
+    text-decoration: none;
+    outline: 0
+}
+a:hover {
+    opacity: .8;
+    text-decoration: none
+}
+.clearfix:after {
+    content: '.';
+    display: block;
+    clear: both;
+    line-height: 0;
+    height: 0;
+    visibility: hidden
+}
+.clear_float {
+    clear: both;
+    font-size: 1px;
+    height: 0;
+    width: 0;
+    line-height: 1;
+    overflow: hidden
+}
+.none {
+    display: none
+}
+.foot{
+    background: #434947;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 50px;
+}
+.footer{
+    color: #fff;
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+/*---顶部样式----*/
+.head{
+    height:46px;
+    background: #14517b;
+    border-bottom: 1px solid #1c669a;
+    color:#fff;
+}
+.header h3{
+    line-height: 45px;
+	height:45px;
+    color: #fff;
+    font-size: 20px;
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    float: left;
+    background: #f8b500;
+    width: 180px;
+    border-bottom: 1px solid #14517b;
+	text-align:center;
+}
+.header .headerbar{
+    float: right;
+    color: #999;
+    line-height:46px;
+    padding-right: 25px;
+}
+.header h3 a{
+    color:#fff;
+}
+.headerbar ul li{
+    float: left;
+    margin-left:15px;
+    position: relative;
+}
+.headerbar ul li i{
+    margin-right:8px;
+}
+.headerbar ul li a{
+    color: #999;
+}
+.headerbar ul li a:hover{
+    color: #e5e5e5;
+}
+.headerbar ul li i.message{
+    position: absolute;
+    display: block;
+    width:18px;
+    height:18px;
+    background: url("../images/xiaoxi.png");
+    top:16px;
+    left: -28px;
+    background-size: 100% 100%;
+}
+.baseBgColor{
+    background:#f5f5f5;
+}
+/*-------Left Navigation Bar Css-------*/
+.logoimg{
+    width: 400px;
+    margin-top: 50px;
+    margin-left: 100px;
+}

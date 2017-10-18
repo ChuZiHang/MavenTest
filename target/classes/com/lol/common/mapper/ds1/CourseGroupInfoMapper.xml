@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lol.common.mapper.ds1.CourseGroupInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lol.common.model.ds1.CourseGroupInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="days" property="days" jdbcType="INTEGER" />
+    <result column="sign_img" property="signImg" jdbcType="VARCHAR" />
+    <result column="imgs" property="imgs" jdbcType="VARCHAR" />
+    <result column="sys_cust_id" property="sysCustId" jdbcType="INTEGER" />
+    <result column="use_cust_id" property="useCustId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="parent_cust_id" property="parentCustId" jdbcType="INTEGER" />
+    <result column="is_refund" property="isRefund" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="fee" property="fee" jdbcType="INTEGER" />
+    <result column="sale_rule" property="saleRule" jdbcType="INTEGER" />
+    <result column="refund_rule" property="refundRule" jdbcType="INTEGER" />
+    <result column="refund_price" property="refundPrice" jdbcType="INTEGER" />
+    <result column="sale_price" property="salePrice" jdbcType="INTEGER" />
+    <result column="is_send" property="isSend" jdbcType="INTEGER" />
+    <result column="send_content" property="sendContent" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="people_num" property="peopleNum" jdbcType="INTEGER" />
+    <result column="class_count" property="classCount" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.lol.common.model.ds1.CourseGroupInfo" extends="BaseResultMap" >
+    <result column="pro_desc" property="proDesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, course_name, days, sign_img, imgs, sys_cust_id, use_cust_id, status, parent_cust_id, 
+    is_refund, user_id, create_time, fee, sale_rule, refund_rule, refund_price, sale_price, 
+    is_send, send_content, memo, people_num, class_count
+  </sql>
+  <sql id="Blob_Column_List" >
+    pro_desc
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.lol.common.model.ds1.CourseGroupInfoExample" >
+    <include refid="pagePrefix" />
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from course_group_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="pageSuffix" />
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lol.common.model.ds1.CourseGroupInfoExample" >
+    <include refid="pagePrefix" />
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from course_group_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="pageSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from course_group_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course_group_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lol.common.model.ds1.CourseGroupInfoExample" >
+    delete from course_group_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lol.common.model.ds1.CourseGroupInfo" >
+    insert into course_group_info (id, course_name, days, 
+      sign_img, imgs, sys_cust_id, 
+      use_cust_id, status, parent_cust_id, 
+      is_refund, user_id, create_time, 
+      fee, sale_rule, refund_rule, 
+      refund_price, sale_price, is_send, 
+      send_content, memo, people_num, 
+      class_count, pro_desc)
+    values (#{id,jdbcType=INTEGER}, #{courseName,jdbcType=VARCHAR}, #{days,jdbcType=INTEGER}, 
+      #{signImg,jdbcType=VARCHAR}, #{imgs,jdbcType=VARCHAR}, #{sysCustId,jdbcType=INTEGER}, 
+      #{useCustId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{parentCustId,jdbcType=INTEGER}, 
+      #{isRefund,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{fee,jdbcType=INTEGER}, #{saleRule,jdbcType=INTEGER}, #{refundRule,jdbcType=INTEGER}, 
+      #{refundPrice,jdbcType=INTEGER}, #{salePrice,jdbcType=INTEGER}, #{isSend,jdbcType=INTEGER}, 
+      #{sendContent,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{peopleNum,jdbcType=INTEGER}, 
+      #{classCount,jdbcType=INTEGER}, #{proDesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lol.common.model.ds1.CourseGroupInfo" >
+    insert into course_group_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
+      <if test="days != null" >
+        days,
+      </if>
+      <if test="signImg != null" >
+        sign_img,
+      </if>
+      <if test="imgs != null" >
+        imgs,
+      </if>
+      <if test="sysCustId != null" >
+        sys_cust_id,
+      </if>
+      <if test="useCustId != null" >
+        use_cust_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="parentCustId != null" >
+        parent_cust_id,
+      </if>
+      <if test="isRefund != null" >
+        is_refund,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+      <if test="saleRule != null" >
+        sale_rule,
+      </if>
+      <if test="refundRule != null" >
+        refund_rule,
+      </if>
+      <if test="refundPrice != null" >
+        refund_price,
+      </if>
+      <if test="salePrice != null" >
+        sale_price,
+      </if>
+      <if test="isSend != null" >
+        is_send,
+      </if>
+      <if test="sendContent != null" >
+        send_content,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="peopleNum != null" >
+        people_num,
+      </if>
+      <if test="classCount != null" >
+        class_count,
+      </if>
+      <if test="proDesc != null" >
+        pro_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="days != null" >
+        #{days,jdbcType=INTEGER},
+      </if>
+      <if test="signImg != null" >
+        #{signImg,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs != null" >
+        #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustId != null" >
+        #{sysCustId,jdbcType=INTEGER},
+      </if>
+      <if test="useCustId != null" >
+        #{useCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="parentCustId != null" >
+        #{parentCustId,jdbcType=INTEGER},
+      </if>
+      <if test="isRefund != null" >
+        #{isRefund,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=INTEGER},
+      </if>
+      <if test="saleRule != null" >
+        #{saleRule,jdbcType=INTEGER},
+      </if>
+      <if test="refundRule != null" >
+        #{refundRule,jdbcType=INTEGER},
+      </if>
+      <if test="refundPrice != null" >
+        #{refundPrice,jdbcType=INTEGER},
+      </if>
+      <if test="salePrice != null" >
+        #{salePrice,jdbcType=INTEGER},
+      </if>
+      <if test="isSend != null" >
+        #{isSend,jdbcType=INTEGER},
+      </if>
+      <if test="sendContent != null" >
+        #{sendContent,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="peopleNum != null" >
+        #{peopleNum,jdbcType=INTEGER},
+      </if>
+      <if test="classCount != null" >
+        #{classCount,jdbcType=INTEGER},
+      </if>
+      <if test="proDesc != null" >
+        #{proDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lol.common.model.ds1.CourseGroupInfoExample" resultType="java.lang.Integer" >
+    select count(*) from course_group_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update course_group_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.courseName != null" >
+        course_name = #{record.courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.days != null" >
+        days = #{record.days,jdbcType=INTEGER},
+      </if>
+      <if test="record.signImg != null" >
+        sign_img = #{record.signImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgs != null" >
+        imgs = #{record.imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysCustId != null" >
+        sys_cust_id = #{record.sysCustId,jdbcType=INTEGER},
+      </if>
+      <if test="record.useCustId != null" >
+        use_cust_id = #{record.useCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentCustId != null" >
+        parent_cust_id = #{record.parentCustId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isRefund != null" >
+        is_refund = #{record.isRefund,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fee != null" >
+        fee = #{record.fee,jdbcType=INTEGER},
+      </if>
+      <if test="record.saleRule != null" >
+        sale_rule = #{record.saleRule,jdbcType=INTEGER},
+      </if>
+      <if test="record.refundRule != null" >
+        refund_rule = #{record.refundRule,jdbcType=INTEGER},
+      </if>
+      <if test="record.refundPrice != null" >
+        refund_price = #{record.refundPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.salePrice != null" >
+        sale_price = #{record.salePrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.isSend != null" >
+        is_send = #{record.isSend,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendContent != null" >
+        send_content = #{record.sendContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.peopleNum != null" >
+        people_num = #{record.peopleNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.classCount != null" >
+        class_count = #{record.classCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.proDesc != null" >
+        pro_desc = #{record.proDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update course_group_info
+    set id = #{record.id,jdbcType=INTEGER},
+      course_name = #{record.courseName,jdbcType=VARCHAR},
+      days = #{record.days,jdbcType=INTEGER},
+      sign_img = #{record.signImg,jdbcType=VARCHAR},
+      imgs = #{record.imgs,jdbcType=VARCHAR},
+      sys_cust_id = #{record.sysCustId,jdbcType=INTEGER},
+      use_cust_id = #{record.useCustId,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      parent_cust_id = #{record.parentCustId,jdbcType=INTEGER},
+      is_refund = #{record.isRefund,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      fee = #{record.fee,jdbcType=INTEGER},
+      sale_rule = #{record.saleRule,jdbcType=INTEGER},
+      refund_rule = #{record.refundRule,jdbcType=INTEGER},
+      refund_price = #{record.refundPrice,jdbcType=INTEGER},
+      sale_price = #{record.salePrice,jdbcType=INTEGER},
+      is_send = #{record.isSend,jdbcType=INTEGER},
+      send_content = #{record.sendContent,jdbcType=VARCHAR},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      people_num = #{record.peopleNum,jdbcType=INTEGER},
+      class_count = #{record.classCount,jdbcType=INTEGER},
+      pro_desc = #{record.proDesc,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update course_group_info
+    set id = #{record.id,jdbcType=INTEGER},
+      course_name = #{record.courseName,jdbcType=VARCHAR},
+      days = #{record.days,jdbcType=INTEGER},
+      sign_img = #{record.signImg,jdbcType=VARCHAR},
+      imgs = #{record.imgs,jdbcType=VARCHAR},
+      sys_cust_id = #{record.sysCustId,jdbcType=INTEGER},
+      use_cust_id = #{record.useCustId,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      parent_cust_id = #{record.parentCustId,jdbcType=INTEGER},
+      is_refund = #{record.isRefund,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      fee = #{record.fee,jdbcType=INTEGER},
+      sale_rule = #{record.saleRule,jdbcType=INTEGER},
+      refund_rule = #{record.refundRule,jdbcType=INTEGER},
+      refund_price = #{record.refundPrice,jdbcType=INTEGER},
+      sale_price = #{record.salePrice,jdbcType=INTEGER},
+      is_send = #{record.isSend,jdbcType=INTEGER},
+      send_content = #{record.sendContent,jdbcType=VARCHAR},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      people_num = #{record.peopleNum,jdbcType=INTEGER},
+      class_count = #{record.classCount,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lol.common.model.ds1.CourseGroupInfo" >
+    update course_group_info
+    <set >
+      <if test="courseName != null" >
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="days != null" >
+        days = #{days,jdbcType=INTEGER},
+      </if>
+      <if test="signImg != null" >
+        sign_img = #{signImg,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs != null" >
+        imgs = #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCustId != null" >
+        sys_cust_id = #{sysCustId,jdbcType=INTEGER},
+      </if>
+      <if test="useCustId != null" >
+        use_cust_id = #{useCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="parentCustId != null" >
+        parent_cust_id = #{parentCustId,jdbcType=INTEGER},
+      </if>
+      <if test="isRefund != null" >
+        is_refund = #{isRefund,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=INTEGER},
+      </if>
+      <if test="saleRule != null" >
+        sale_rule = #{saleRule,jdbcType=INTEGER},
+      </if>
+      <if test="refundRule != null" >
+        refund_rule = #{refundRule,jdbcType=INTEGER},
+      </if>
+      <if test="refundPrice != null" >
+        refund_price = #{refundPrice,jdbcType=INTEGER},
+      </if>
+      <if test="salePrice != null" >
+        sale_price = #{salePrice,jdbcType=INTEGER},
+      </if>
+      <if test="isSend != null" >
+        is_send = #{isSend,jdbcType=INTEGER},
+      </if>
+      <if test="sendContent != null" >
+        send_content = #{sendContent,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="peopleNum != null" >
+        people_num = #{peopleNum,jdbcType=INTEGER},
+      </if>
+      <if test="classCount != null" >
+        class_count = #{classCount,jdbcType=INTEGER},
+      </if>
+      <if test="proDesc != null" >
+        pro_desc = #{proDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lol.common.model.ds1.CourseGroupInfo" >
+    update course_group_info
+    set course_name = #{courseName,jdbcType=VARCHAR},
+      days = #{days,jdbcType=INTEGER},
+      sign_img = #{signImg,jdbcType=VARCHAR},
+      imgs = #{imgs,jdbcType=VARCHAR},
+      sys_cust_id = #{sysCustId,jdbcType=INTEGER},
+      use_cust_id = #{useCustId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      parent_cust_id = #{parentCustId,jdbcType=INTEGER},
+      is_refund = #{isRefund,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      fee = #{fee,jdbcType=INTEGER},
+      sale_rule = #{saleRule,jdbcType=INTEGER},
+      refund_rule = #{refundRule,jdbcType=INTEGER},
+      refund_price = #{refundPrice,jdbcType=INTEGER},
+      sale_price = #{salePrice,jdbcType=INTEGER},
+      is_send = #{isSend,jdbcType=INTEGER},
+      send_content = #{sendContent,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      people_num = #{peopleNum,jdbcType=INTEGER},
+      class_count = #{classCount,jdbcType=INTEGER},
+      pro_desc = #{proDesc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lol.common.model.ds1.CourseGroupInfo" >
+    update course_group_info
+    set course_name = #{courseName,jdbcType=VARCHAR},
+      days = #{days,jdbcType=INTEGER},
+      sign_img = #{signImg,jdbcType=VARCHAR},
+      imgs = #{imgs,jdbcType=VARCHAR},
+      sys_cust_id = #{sysCustId,jdbcType=INTEGER},
+      use_cust_id = #{useCustId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      parent_cust_id = #{parentCustId,jdbcType=INTEGER},
+      is_refund = #{isRefund,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      fee = #{fee,jdbcType=INTEGER},
+      sale_rule = #{saleRule,jdbcType=INTEGER},
+      refund_rule = #{refundRule,jdbcType=INTEGER},
+      refund_price = #{refundPrice,jdbcType=INTEGER},
+      sale_price = #{salePrice,jdbcType=INTEGER},
+      is_send = #{isSend,jdbcType=INTEGER},
+      send_content = #{sendContent,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      people_num = #{peopleNum,jdbcType=INTEGER},
+      class_count = #{classCount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <sql id="pagePrefix" >
+    <if test="page != null" >
+      <if test="dialect == 'oracle'" >
+        select * from ( select row_.*, rownum rownum_ from ( 
+      </if>
+    </if>
+  </sql>
+  <sql id="pageSuffix" >
+    <if test="page != null" >
+      <if test="dialect == 'oracle'" >
+        <![CDATA[ ) row_ ) where rownum_ > #{page.start} and rownum_ <= (#{page.start} + #{page.limit}) ]]>
+      </if>
+      <if test="dialect == 'mysql'" >
+        limit #{page.start} , #{page.limit}
+      </if>
+    </if>
+  </sql>
+</mapper>

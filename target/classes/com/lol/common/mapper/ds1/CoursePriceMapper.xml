@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lol.common.mapper.ds1.CoursePriceMapper" >
+  <resultMap id="BaseResultMap" type="com.lol.common.model.ds1.CoursePrice" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="course_id" property="courseId" jdbcType="BIGINT" />
+    <result column="sale_price" property="salePrice" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="people_num" property="peopleNum" jdbcType="INTEGER" />
+    <result column="crete_time" property="creteTime" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="week" property="week" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="coach_id" property="coachId" jdbcType="BIGINT" />
+    <result column="price_time" property="priceTime" jdbcType="TIMESTAMP" />
+    <result column="sys_cust_id" property="sysCustId" jdbcType="INTEGER" />
+    <result column="parent_cust_id" property="parentCustId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, start_time, end_time, course_id, sale_price, address, people_num, crete_time, 
+    user_id, week, status, coach_id, price_time, sys_cust_id, parent_cust_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lol.common.model.ds1.CoursePriceExample" >
+    <include refid="pagePrefix" />
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from course_price
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="pageSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_price
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from course_price
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lol.common.model.ds1.CoursePriceExample" >
+    delete from course_price
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lol.common.model.ds1.CoursePrice" >
+    insert into course_price (id, start_time, end_time, 
+      course_id, sale_price, address, 
+      people_num, crete_time, user_id, 
+      week, status, coach_id, 
+      price_time, sys_cust_id, parent_cust_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{courseId,jdbcType=BIGINT}, #{salePrice,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
+      #{peopleNum,jdbcType=INTEGER}, #{creteTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=VARCHAR}, 
+      #{week,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{coachId,jdbcType=BIGINT}, 
+      #{priceTime,jdbcType=TIMESTAMP}, #{sysCustId,jdbcType=INTEGER}, #{parentCustId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lol.common.model.ds1.CoursePrice" >
+    insert into course_price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="salePrice != null" >
+        sale_price,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="peopleNum != null" >
+        people_num,
+      </if>
+      <if test="creteTime != null" >
+        crete_time,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="week != null" >
+        week,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="coachId != null" >
+        coach_id,
+      </if>
+      <if test="priceTime != null" >
+        price_time,
+      </if>
+      <if test="sysCustId != null" >
+        sys_cust_id,
+      </if>
+      <if test="parentCustId != null" >
+        parent_cust_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="courseId != null" >
+        #{courseId,jdbcType=BIGINT},
+      </if>
+      <if test="salePrice != null" >
+        #{salePrice,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="peopleNum != null" >
+        #{peopleNum,jdbcType=INTEGER},
+      </if>
+      <if test="creteTime != null" >
+        #{creteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="week != null" >
+        #{week,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="coachId != null" >
+        #{coachId,jdbcType=BIGINT},
+      </if>
+      <if test="priceTime != null" >
+        #{priceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCustId != null" >
+        #{sysCustId,jdbcType=INTEGER},
+      </if>
+      <if test="parentCustId != null" >
+        #{parentCustId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lol.common.model.ds1.CoursePriceExample" resultType="java.lang.Integer" >
+    select count(*) from course_price
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update course_price
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.courseId != null" >
+        course_id = #{record.courseId,jdbcType=BIGINT},
+      </if>
+      <if test="record.salePrice != null" >
+        sale_price = #{record.salePrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.peopleNum != null" >
+        people_num = #{record.peopleNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.creteTime != null" >
+        crete_time = #{record.creteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.week != null" >
+        week = #{record.week,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.coachId != null" >
+        coach_id = #{record.coachId,jdbcType=BIGINT},
+      </if>
+      <if test="record.priceTime != null" >
+        price_time = #{record.priceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sysCustId != null" >
+        sys_cust_id = #{record.sysCustId,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentCustId != null" >
+        parent_cust_id = #{record.parentCustId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update course_price
+    set id = #{record.id,jdbcType=BIGINT},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      course_id = #{record.courseId,jdbcType=BIGINT},
+      sale_price = #{record.salePrice,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
+      people_num = #{record.peopleNum,jdbcType=INTEGER},
+      crete_time = #{record.creteTime,jdbcType=TIMESTAMP},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      week = #{record.week,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      coach_id = #{record.coachId,jdbcType=BIGINT},
+      price_time = #{record.priceTime,jdbcType=TIMESTAMP},
+      sys_cust_id = #{record.sysCustId,jdbcType=INTEGER},
+      parent_cust_id = #{record.parentCustId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lol.common.model.ds1.CoursePrice" >
+    update course_price
+    <set >
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="courseId != null" >
+        course_id = #{courseId,jdbcType=BIGINT},
+      </if>
+      <if test="salePrice != null" >
+        sale_price = #{salePrice,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="peopleNum != null" >
+        people_num = #{peopleNum,jdbcType=INTEGER},
+      </if>
+      <if test="creteTime != null" >
+        crete_time = #{creteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="week != null" >
+        week = #{week,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="coachId != null" >
+        coach_id = #{coachId,jdbcType=BIGINT},
+      </if>
+      <if test="priceTime != null" >
+        price_time = #{priceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCustId != null" >
+        sys_cust_id = #{sysCustId,jdbcType=INTEGER},
+      </if>
+      <if test="parentCustId != null" >
+        parent_cust_id = #{parentCustId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lol.common.model.ds1.CoursePrice" >
+    update course_price
+    set start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      course_id = #{courseId,jdbcType=BIGINT},
+      sale_price = #{salePrice,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      people_num = #{peopleNum,jdbcType=INTEGER},
+      crete_time = #{creteTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=VARCHAR},
+      week = #{week,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      coach_id = #{coachId,jdbcType=BIGINT},
+      price_time = #{priceTime,jdbcType=TIMESTAMP},
+      sys_cust_id = #{sysCustId,jdbcType=INTEGER},
+      parent_cust_id = #{parentCustId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="pagePrefix" >
+    <if test="page != null" >
+      <if test="dialect == 'oracle'" >
+        select * from ( select row_.*, rownum rownum_ from ( 
+      </if>
+    </if>
+  </sql>
+  <sql id="pageSuffix" >
+    <if test="page != null" >
+      <if test="dialect == 'oracle'" >
+        <![CDATA[ ) row_ ) where rownum_ > #{page.start} and rownum_ <= (#{page.start} + #{page.limit}) ]]>
+      </if>
+      <if test="dialect == 'mysql'" >
+        limit #{page.start} , #{page.limit}
+      </if>
+    </if>
+  </sql>
+</mapper>

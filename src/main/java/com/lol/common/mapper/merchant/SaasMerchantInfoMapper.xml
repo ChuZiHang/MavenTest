@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lol.common.mapper.merchant.SaasMerchantInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lol.common.model.merchant.SaasMerchantInfo" >
+    <id column="mc_id" property="mcId" jdbcType="INTEGER" />
+    <result column="mc_name" property="mcName" jdbcType="VARCHAR" />
+    <result column="mc_domain" property="mcDomain" jdbcType="VARCHAR" />
+    <result column="mc_logo" property="mcLogo" jdbcType="VARCHAR" />
+    <result column="mc_s_time" property="mcSTime" jdbcType="TIMESTAMP" />
+    <result column="mc_e_time" property="mcETime" jdbcType="TIMESTAMP" />
+    <result column="mc_pay_fee" property="mcPayFee" jdbcType="INTEGER" />
+    <result column="mc_sms_count" property="mcSmsCount" jdbcType="INTEGER" />
+    <result column="mc_cust_name" property="mcCustName" jdbcType="VARCHAR" />
+    <result column="mc_link_man" property="mcLinkMan" jdbcType="VARCHAR" />
+    <result column="mc_cust_desc" property="mcCustDesc" jdbcType="VARCHAR" />
+    <result column="mc_link_mobile" property="mcLinkMobile" jdbcType="VARCHAR" />
+    <result column="mc_link_qq" property="mcLinkQq" jdbcType="VARCHAR" />
+    <result column="mc_link_email" property="mcLinkEmail" jdbcType="VARCHAR" />
+    <result column="mc_link_fax" property="mcLinkFax" jdbcType="VARCHAR" />
+    <result column="mc_address" property="mcAddress" jdbcType="VARCHAR" />
+    <result column="mc_alipay_account" property="mcAlipayAccount" jdbcType="VARCHAR" />
+    <result column="mc_alipay_name" property="mcAlipayName" jdbcType="VARCHAR" />
+    <result column="mc_bank_province" property="mcBankProvince" jdbcType="VARCHAR" />
+    <result column="mc_bank_city" property="mcBankCity" jdbcType="VARCHAR" />
+    <result column="mc_bank_district" property="mcBankDistrict" jdbcType="VARCHAR" />
+    <result column="mc_bank_account" property="mcBankAccount" jdbcType="VARCHAR" />
+    <result column="mc_bank_name" property="mcBankName" jdbcType="VARCHAR" />
+    <result column="mc_bank_acname" property="mcBankAcname" jdbcType="VARCHAR" />
+    <result column="mc_stype" property="mcStype" jdbcType="INTEGER" />
+    <result column="mc_type" property="mcType" jdbcType="INTEGER" />
+    <result column="mc_p_id" property="mcPId" jdbcType="INTEGER" />
+    <result column="mc_signimg" property="mcSignimg" jdbcType="VARCHAR" />
+    <result column="mc_db_link" property="mcDbLink" jdbcType="VARCHAR" />
+    <result column="mc_login_account" property="mcLoginAccount" jdbcType="VARCHAR" />
+    <result column="mc_login_pwd" property="mcLoginPwd" jdbcType="VARCHAR" />
+    <result column="mc_cust_type" property="mcCustType" jdbcType="INTEGER" />
+    <result column="mc_area_id" property="mcAreaId" jdbcType="INTEGER" />
+    <result column="mc_c_time" property="mcCTime" jdbcType="TIMESTAMP" />
+    <result column="mc_status" property="mcStatus" jdbcType="INTEGER" />
+    <result column="longitude" property="longitude" jdbcType="DOUBLE" />
+    <result column="latitude" property="latitude" jdbcType="DOUBLE" />
+    <result column="mc_sms_status" property="mcSmsStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mc_id, mc_name, mc_domain, mc_logo, mc_s_time, mc_e_time, mc_pay_fee, mc_sms_count, 
+    mc_cust_name, mc_link_man, mc_cust_desc, mc_link_mobile, mc_link_qq, mc_link_email, 
+    mc_link_fax, mc_address, mc_alipay_account, mc_alipay_name, mc_bank_province, mc_bank_city, 
+    mc_bank_district, mc_bank_account, mc_bank_name, mc_bank_acname, mc_stype, mc_type, 
+    mc_p_id, mc_signimg, mc_db_link, mc_login_account, mc_login_pwd, mc_cust_type, mc_area_id, 
+    mc_c_time, mc_status, longitude, latitude, mc_sms_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lol.common.model.merchant.SaasMerchantInfoExample" >
+    <include refid="pagePrefix" />
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from saas_merchant_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="pageSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from saas_merchant_info
+    where mc_id = #{mcId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from saas_merchant_info
+    where mc_id = #{mcId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lol.common.model.merchant.SaasMerchantInfoExample" >
+    delete from saas_merchant_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lol.common.model.merchant.SaasMerchantInfo" >
+    insert into saas_merchant_info (mc_id, mc_name, mc_domain, 
+      mc_logo, mc_s_time, mc_e_time, 
+      mc_pay_fee, mc_sms_count, mc_cust_name, 
+      mc_link_man, mc_cust_desc, mc_link_mobile, 
+      mc_link_qq, mc_link_email, mc_link_fax, 
+      mc_address, mc_alipay_account, mc_alipay_name, 
+      mc_bank_province, mc_bank_city, mc_bank_district, 
+      mc_bank_account, mc_bank_name, mc_bank_acname, 
+      mc_stype, mc_type, mc_p_id, 
+      mc_signimg, mc_db_link, mc_login_account, 
+      mc_login_pwd, mc_cust_type, mc_area_id, 
+      mc_c_time, mc_status, longitude, 
+      latitude, mc_sms_status)
+    values (#{mcId,jdbcType=INTEGER}, #{mcName,jdbcType=VARCHAR}, #{mcDomain,jdbcType=VARCHAR}, 
+      #{mcLogo,jdbcType=VARCHAR}, #{mcSTime,jdbcType=TIMESTAMP}, #{mcETime,jdbcType=TIMESTAMP}, 
+      #{mcPayFee,jdbcType=INTEGER}, #{mcSmsCount,jdbcType=INTEGER}, #{mcCustName,jdbcType=VARCHAR}, 
+      #{mcLinkMan,jdbcType=VARCHAR}, #{mcCustDesc,jdbcType=VARCHAR}, #{mcLinkMobile,jdbcType=VARCHAR}, 
+      #{mcLinkQq,jdbcType=VARCHAR}, #{mcLinkEmail,jdbcType=VARCHAR}, #{mcLinkFax,jdbcType=VARCHAR}, 
+      #{mcAddress,jdbcType=VARCHAR}, #{mcAlipayAccount,jdbcType=VARCHAR}, #{mcAlipayName,jdbcType=VARCHAR}, 
+      #{mcBankProvince,jdbcType=VARCHAR}, #{mcBankCity,jdbcType=VARCHAR}, #{mcBankDistrict,jdbcType=VARCHAR}, 
+      #{mcBankAccount,jdbcType=VARCHAR}, #{mcBankName,jdbcType=VARCHAR}, #{mcBankAcname,jdbcType=VARCHAR}, 
+      #{mcStype,jdbcType=INTEGER}, #{mcType,jdbcType=INTEGER}, #{mcPId,jdbcType=INTEGER}, 
+      #{mcSignimg,jdbcType=VARCHAR}, #{mcDbLink,jdbcType=VARCHAR}, #{mcLoginAccount,jdbcType=VARCHAR}, 
+      #{mcLoginPwd,jdbcType=VARCHAR}, #{mcCustType,jdbcType=INTEGER}, #{mcAreaId,jdbcType=INTEGER}, 
+      #{mcCTime,jdbcType=TIMESTAMP}, #{mcStatus,jdbcType=INTEGER}, #{longitude,jdbcType=DOUBLE}, 
+      #{latitude,jdbcType=DOUBLE}, #{mcSmsStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lol.common.model.merchant.SaasMerchantInfo" >
+    insert into saas_merchant_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mcId != null" >
+        mc_id,
+      </if>
+      <if test="mcName != null" >
+        mc_name,
+      </if>
+      <if test="mcDomain != null" >
+        mc_domain,
+      </if>
+      <if test="mcLogo != null" >
+        mc_logo,
+      </if>
+      <if test="mcSTime != null" >
+        mc_s_time,
+      </if>
+      <if test="mcETime != null" >
+        mc_e_time,
+      </if>
+      <if test="mcPayFee != null" >
+        mc_pay_fee,
+      </if>
+      <if test="mcSmsCount != null" >
+        mc_sms_count,
+      </if>
+      <if test="mcCustName != null" >
+        mc_cust_name,
+      </if>
+      <if test="mcLinkMan != null" >
+        mc_link_man,
+      </if>
+      <if test="mcCustDesc != null" >
+        mc_cust_desc,
+      </if>
+      <if test="mcLinkMobile != null" >
+        mc_link_mobile,
+      </if>
+      <if test="mcLinkQq != null" >
+        mc_link_qq,
+      </if>
+      <if test="mcLinkEmail != null" >
+        mc_link_email,
+      </if>
+      <if test="mcLinkFax != null" >
+        mc_link_fax,
+      </if>
+      <if test="mcAddress != null" >
+        mc_address,
+      </if>
+      <if test="mcAlipayAccount != null" >
+        mc_alipay_account,
+      </if>
+      <if test="mcAlipayName != null" >
+        mc_alipay_name,
+      </if>
+      <if test="mcBankProvince != null" >
+        mc_bank_province,
+      </if>
+      <if test="mcBankCity != null" >
+        mc_bank_city,
+      </if>
+      <if test="mcBankDistrict != null" >
+        mc_bank_district,
+      </if>
+      <if test="mcBankAccount != null" >
+        mc_bank_account,
+      </if>
+      <if test="mcBankName != null" >
+        mc_bank_name,
+      </if>
+      <if test="mcBankAcname != null" >
+        mc_bank_acname,
+      </if>
+      <if test="mcStype != null" >
+        mc_stype,
+      </if>
+      <if test="mcType != null" >
+        mc_type,
+      </if>
+      <if test="mcPId != null" >
+        mc_p_id,
+      </if>
+      <if test="mcSignimg != null" >
+        mc_signimg,
+      </if>
+      <if test="mcDbLink != null" >
+        mc_db_link,
+      </if>
+      <if test="mcLoginAccount != null" >
+        mc_login_account,
+      </if>
+      <if test="mcLoginPwd != null" >
+        mc_login_pwd,
+      </if>
+      <if test="mcCustType != null" >
+        mc_cust_type,
+      </if>
+      <if test="mcAreaId != null" >
+        mc_area_id,
+      </if>
+      <if test="mcCTime != null" >
+        mc_c_time,
+      </if>
+      <if test="mcStatus != null" >
+        mc_status,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="mcSmsStatus != null" >
+        mc_sms_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mcId != null" >
+        #{mcId,jdbcType=INTEGER},
+      </if>
+      <if test="mcName != null" >
+        #{mcName,jdbcType=VARCHAR},
+      </if>
+      <if test="mcDomain != null" >
+        #{mcDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="mcLogo != null" >
+        #{mcLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="mcSTime != null" >
+        #{mcSTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mcETime != null" >
+        #{mcETime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mcPayFee != null" >
+        #{mcPayFee,jdbcType=INTEGER},
+      </if>
+      <if test="mcSmsCount != null" >
+        #{mcSmsCount,jdbcType=INTEGER},
+      </if>
+      <if test="mcCustName != null" >
+        #{mcCustName,jdbcType=VARCHAR},
+      </if>
+      <if test="mcLinkMan != null" >
+        #{mcLinkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="mcCustDesc != null" >
+        #{mcCustDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="mcLinkMobile != null" >
+        #{mcLinkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="mcLinkQq != null" >
+        #{mcLinkQq,jdbcType=VARCHAR},
+      </if>
+      <if test="mcLinkEmail != null" >
+        #{mcLinkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="mcLinkFax != null" >
+        #{mcLinkFax,jdbcType=VARCHAR},
+      </if>
+      <if test="mcAddress != null" >
+        #{mcAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mcAlipayAccount != null" >
+        #{mcAlipayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="mcAlipayName != null" >
+        #{mcAlipayName,jdbcType=VARCHAR},
+      </if>
+      <if test="mcBankProvince != null" >
+        #{mcBankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="mcBankCity != null" >
+        #{mcBankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="mcBankDistrict != null" >
+        #{mcBankDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="mcBankAccount != null" >
+        #{mcBankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="mcBankName != null" >
+        #{mcBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="mcBankAcname != null" >
+        #{mcBankAcname,jdbcType=VARCHAR},
+      </if>
+      <if test="mcStype != null" >
+        #{mcStype,jdbcType=INTEGER},
+      </if>
+      <if test="mcType != null" >
+        #{mcType,jdbcType=INTEGER},
+      </if>
+      <if test="mcPId != null" >
+        #{mcPId,jdbcType=INTEGER},
+      </if>
+      <if test="mcSignimg != null" >
+        #{mcSignimg,jdbcType=VARCHAR},
+      </if>
+      <if test="mcDbLink != null" >
+        #{mcDbLink,jdbcType=VARCHAR},
+      </if>
+      <if test="mcLoginAccount != null" >
+        #{mcLoginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="mcLoginPwd != null" >
+        #{mcLoginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="mcCustType != null" >
+        #{mcCustType,jdbcType=INTEGER},
+      </if>
+      <if test="mcAreaId != null" >
+        #{mcAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="mcCTime != null" >
+        #{mcCTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mcStatus != null" >
+        #{mcStatus,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="mcSmsStatus != null" >
+        #{mcSmsStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lol.common.model.merchant.SaasMerchantInfoExample" resultType="java.lang.Integer" >
+    select count(*) from saas_merchant_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update saas_merchant_info
+    <set >
+      <if test="record.mcId != null" >
+        mc_id = #{record.mcId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mcName != null" >
+        mc_name = #{record.mcName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcDomain != null" >
+        mc_domain = #{record.mcDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcLogo != null" >
+        mc_logo = #{record.mcLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcSTime != null" >
+        mc_s_time = #{record.mcSTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mcETime != null" >
+        mc_e_time = #{record.mcETime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mcPayFee != null" >
+        mc_pay_fee = #{record.mcPayFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.mcSmsCount != null" >
+        mc_sms_count = #{record.mcSmsCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.mcCustName != null" >
+        mc_cust_name = #{record.mcCustName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcLinkMan != null" >
+        mc_link_man = #{record.mcLinkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcCustDesc != null" >
+        mc_cust_desc = #{record.mcCustDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcLinkMobile != null" >
+        mc_link_mobile = #{record.mcLinkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcLinkQq != null" >
+        mc_link_qq = #{record.mcLinkQq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcLinkEmail != null" >
+        mc_link_email = #{record.mcLinkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcLinkFax != null" >
+        mc_link_fax = #{record.mcLinkFax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcAddress != null" >
+        mc_address = #{record.mcAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcAlipayAccount != null" >
+        mc_alipay_account = #{record.mcAlipayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcAlipayName != null" >
+        mc_alipay_name = #{record.mcAlipayName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcBankProvince != null" >
+        mc_bank_province = #{record.mcBankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcBankCity != null" >
+        mc_bank_city = #{record.mcBankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcBankDistrict != null" >
+        mc_bank_district = #{record.mcBankDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcBankAccount != null" >
+        mc_bank_account = #{record.mcBankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcBankName != null" >
+        mc_bank_name = #{record.mcBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcBankAcname != null" >
+        mc_bank_acname = #{record.mcBankAcname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcStype != null" >
+        mc_stype = #{record.mcStype,jdbcType=INTEGER},
+      </if>
+      <if test="record.mcType != null" >
+        mc_type = #{record.mcType,jdbcType=INTEGER},
+      </if>
+      <if test="record.mcPId != null" >
+        mc_p_id = #{record.mcPId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mcSignimg != null" >
+        mc_signimg = #{record.mcSignimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcDbLink != null" >
+        mc_db_link = #{record.mcDbLink,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcLoginAccount != null" >
+        mc_login_account = #{record.mcLoginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcLoginPwd != null" >
+        mc_login_pwd = #{record.mcLoginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcCustType != null" >
+        mc_cust_type = #{record.mcCustType,jdbcType=INTEGER},
+      </if>
+      <if test="record.mcAreaId != null" >
+        mc_area_id = #{record.mcAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mcCTime != null" >
+        mc_c_time = #{record.mcCTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mcStatus != null" >
+        mc_status = #{record.mcStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.longitude != null" >
+        longitude = #{record.longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.latitude != null" >
+        latitude = #{record.latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.mcSmsStatus != null" >
+        mc_sms_status = #{record.mcSmsStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update saas_merchant_info
+    set mc_id = #{record.mcId,jdbcType=INTEGER},
+      mc_name = #{record.mcName,jdbcType=VARCHAR},
+      mc_domain = #{record.mcDomain,jdbcType=VARCHAR},
+      mc_logo = #{record.mcLogo,jdbcType=VARCHAR},
+      mc_s_time = #{record.mcSTime,jdbcType=TIMESTAMP},
+      mc_e_time = #{record.mcETime,jdbcType=TIMESTAMP},
+      mc_pay_fee = #{record.mcPayFee,jdbcType=INTEGER},
+      mc_sms_count = #{record.mcSmsCount,jdbcType=INTEGER},
+      mc_cust_name = #{record.mcCustName,jdbcType=VARCHAR},
+      mc_link_man = #{record.mcLinkMan,jdbcType=VARCHAR},
+      mc_cust_desc = #{record.mcCustDesc,jdbcType=VARCHAR},
+      mc_link_mobile = #{record.mcLinkMobile,jdbcType=VARCHAR},
+      mc_link_qq = #{record.mcLinkQq,jdbcType=VARCHAR},
+      mc_link_email = #{record.mcLinkEmail,jdbcType=VARCHAR},
+      mc_link_fax = #{record.mcLinkFax,jdbcType=VARCHAR},
+      mc_address = #{record.mcAddress,jdbcType=VARCHAR},
+      mc_alipay_account = #{record.mcAlipayAccount,jdbcType=VARCHAR},
+      mc_alipay_name = #{record.mcAlipayName,jdbcType=VARCHAR},
+      mc_bank_province = #{record.mcBankProvince,jdbcType=VARCHAR},
+      mc_bank_city = #{record.mcBankCity,jdbcType=VARCHAR},
+      mc_bank_district = #{record.mcBankDistrict,jdbcType=VARCHAR},
+      mc_bank_account = #{record.mcBankAccount,jdbcType=VARCHAR},
+      mc_bank_name = #{record.mcBankName,jdbcType=VARCHAR},
+      mc_bank_acname = #{record.mcBankAcname,jdbcType=VARCHAR},
+      mc_stype = #{record.mcStype,jdbcType=INTEGER},
+      mc_type = #{record.mcType,jdbcType=INTEGER},
+      mc_p_id = #{record.mcPId,jdbcType=INTEGER},
+      mc_signimg = #{record.mcSignimg,jdbcType=VARCHAR},
+      mc_db_link = #{record.mcDbLink,jdbcType=VARCHAR},
+      mc_login_account = #{record.mcLoginAccount,jdbcType=VARCHAR},
+      mc_login_pwd = #{record.mcLoginPwd,jdbcType=VARCHAR},
+      mc_cust_type = #{record.mcCustType,jdbcType=INTEGER},
+      mc_area_id = #{record.mcAreaId,jdbcType=INTEGER},
+      mc_c_time = #{record.mcCTime,jdbcType=TIMESTAMP},
+      mc_status = #{record.mcStatus,jdbcType=INTEGER},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      latitude = #{record.latitude,jdbcType=DOUBLE},
+      mc_sms_status = #{record.mcSmsStatus,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lol.common.model.merchant.SaasMerchantInfo" >
+    update saas_merchant_info
+    <set >
+      <if test="mcName != null" >
+        mc_name = #{mcName,jdbcType=VARCHAR},
+      </if>
+      <if test="mcDomain != null" >
+        mc_domain = #{mcDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="mcLogo != null" >
+        mc_logo = #{mcLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="mcSTime != null" >
+        mc_s_time = #{mcSTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mcETime != null" >
+        mc_e_time = #{mcETime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mcPayFee != null" >
+        mc_pay_fee = #{mcPayFee,jdbcType=INTEGER},
+      </if>
+      <if test="mcSmsCount != null" >
+        mc_sms_count = #{mcSmsCount,jdbcType=INTEGER},
+      </if>
+      <if test="mcCustName != null" >
+        mc_cust_name = #{mcCustName,jdbcType=VARCHAR},
+      </if>
+      <if test="mcLinkMan != null" >
+        mc_link_man = #{mcLinkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="mcCustDesc != null" >
+        mc_cust_desc = #{mcCustDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="mcLinkMobile != null" >
+        mc_link_mobile = #{mcLinkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="mcLinkQq != null" >
+        mc_link_qq = #{mcLinkQq,jdbcType=VARCHAR},
+      </if>
+      <if test="mcLinkEmail != null" >
+        mc_link_email = #{mcLinkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="mcLinkFax != null" >
+        mc_link_fax = #{mcLinkFax,jdbcType=VARCHAR},
+      </if>
+      <if test="mcAddress != null" >
+        mc_address = #{mcAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mcAlipayAccount != null" >
+        mc_alipay_account = #{mcAlipayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="mcAlipayName != null" >
+        mc_alipay_name = #{mcAlipayName,jdbcType=VARCHAR},
+      </if>
+      <if test="mcBankProvince != null" >
+        mc_bank_province = #{mcBankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="mcBankCity != null" >
+        mc_bank_city = #{mcBankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="mcBankDistrict != null" >
+        mc_bank_district = #{mcBankDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="mcBankAccount != null" >
+        mc_bank_account = #{mcBankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="mcBankName != null" >
+        mc_bank_name = #{mcBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="mcBankAcname != null" >
+        mc_bank_acname = #{mcBankAcname,jdbcType=VARCHAR},
+      </if>
+      <if test="mcStype != null" >
+        mc_stype = #{mcStype,jdbcType=INTEGER},
+      </if>
+      <if test="mcType != null" >
+        mc_type = #{mcType,jdbcType=INTEGER},
+      </if>
+      <if test="mcPId != null" >
+        mc_p_id = #{mcPId,jdbcType=INTEGER},
+      </if>
+      <if test="mcSignimg != null" >
+        mc_signimg = #{mcSignimg,jdbcType=VARCHAR},
+      </if>
+      <if test="mcDbLink != null" >
+        mc_db_link = #{mcDbLink,jdbcType=VARCHAR},
+      </if>
+      <if test="mcLoginAccount != null" >
+        mc_login_account = #{mcLoginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="mcLoginPwd != null" >
+        mc_login_pwd = #{mcLoginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="mcCustType != null" >
+        mc_cust_type = #{mcCustType,jdbcType=INTEGER},
+      </if>
+      <if test="mcAreaId != null" >
+        mc_area_id = #{mcAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="mcCTime != null" >
+        mc_c_time = #{mcCTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mcStatus != null" >
+        mc_status = #{mcStatus,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="mcSmsStatus != null" >
+        mc_sms_status = #{mcSmsStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where mc_id = #{mcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lol.common.model.merchant.SaasMerchantInfo" >
+    update saas_merchant_info
+    set mc_name = #{mcName,jdbcType=VARCHAR},
+      mc_domain = #{mcDomain,jdbcType=VARCHAR},
+      mc_logo = #{mcLogo,jdbcType=VARCHAR},
+      mc_s_time = #{mcSTime,jdbcType=TIMESTAMP},
+      mc_e_time = #{mcETime,jdbcType=TIMESTAMP},
+      mc_pay_fee = #{mcPayFee,jdbcType=INTEGER},
+      mc_sms_count = #{mcSmsCount,jdbcType=INTEGER},
+      mc_cust_name = #{mcCustName,jdbcType=VARCHAR},
+      mc_link_man = #{mcLinkMan,jdbcType=VARCHAR},
+      mc_cust_desc = #{mcCustDesc,jdbcType=VARCHAR},
+      mc_link_mobile = #{mcLinkMobile,jdbcType=VARCHAR},
+      mc_link_qq = #{mcLinkQq,jdbcType=VARCHAR},
+      mc_link_email = #{mcLinkEmail,jdbcType=VARCHAR},
+      mc_link_fax = #{mcLinkFax,jdbcType=VARCHAR},
+      mc_address = #{mcAddress,jdbcType=VARCHAR},
+      mc_alipay_account = #{mcAlipayAccount,jdbcType=VARCHAR},
+      mc_alipay_name = #{mcAlipayName,jdbcType=VARCHAR},
+      mc_bank_province = #{mcBankProvince,jdbcType=VARCHAR},
+      mc_bank_city = #{mcBankCity,jdbcType=VARCHAR},
+      mc_bank_district = #{mcBankDistrict,jdbcType=VARCHAR},
+      mc_bank_account = #{mcBankAccount,jdbcType=VARCHAR},
+      mc_bank_name = #{mcBankName,jdbcType=VARCHAR},
+      mc_bank_acname = #{mcBankAcname,jdbcType=VARCHAR},
+      mc_stype = #{mcStype,jdbcType=INTEGER},
+      mc_type = #{mcType,jdbcType=INTEGER},
+      mc_p_id = #{mcPId,jdbcType=INTEGER},
+      mc_signimg = #{mcSignimg,jdbcType=VARCHAR},
+      mc_db_link = #{mcDbLink,jdbcType=VARCHAR},
+      mc_login_account = #{mcLoginAccount,jdbcType=VARCHAR},
+      mc_login_pwd = #{mcLoginPwd,jdbcType=VARCHAR},
+      mc_cust_type = #{mcCustType,jdbcType=INTEGER},
+      mc_area_id = #{mcAreaId,jdbcType=INTEGER},
+      mc_c_time = #{mcCTime,jdbcType=TIMESTAMP},
+      mc_status = #{mcStatus,jdbcType=INTEGER},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      mc_sms_status = #{mcSmsStatus,jdbcType=INTEGER}
+    where mc_id = #{mcId,jdbcType=INTEGER}
+  </update>
+  <sql id="pagePrefix" >
+    <if test="page != null" >
+      <if test="dialect == 'oracle'" >
+        select * from ( select row_.*, rownum rownum_ from ( 
+      </if>
+    </if>
+  </sql>
+  <sql id="pageSuffix" >
+    <if test="page != null" >
+      <if test="dialect == 'oracle'" >
+        <![CDATA[ ) row_ ) where rownum_ > #{page.start} and rownum_ <= (#{page.start} + #{page.limit}) ]]>
+      </if>
+      <if test="dialect == 'mysql'" >
+        limit #{page.start} , #{page.limit}
+      </if>
+    </if>
+  </sql>
+</mapper>

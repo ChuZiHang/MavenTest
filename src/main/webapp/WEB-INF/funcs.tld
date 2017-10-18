@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+  version="2.0">
+
+  <description>MyFunction</description>
+  <display-name>MyFunction</display-name>
+  <tlib-version>1.2</tlib-version>
+  <short-name>MyFunction</short-name>
+  <uri>http://java.sun.com/jsp/jstl/myfunctions</uri>
+  
+  <function>
+    <description>getMenus</description>
+    <name>getMenus</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.util.List getMenus()</function-signature>
+    <example>
+      ${funcs:getMenus()}
+    </example>
+  </function>
+  <function>
+    <description>getCurrentUserInfo</description>
+    <name>getCurrentUserInfo</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>com.lol.common.bean.CurrentUserInfo getCurrentUserInfo()</function-signature>
+    <example>
+      ${funcs:getCurrentUserInfo()}
+    </example>
+  </function>
+  <function>
+    <description>getUserLogin</description>
+    <name>getUserLogin</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>com.lol.common.model.ds1.UserLogin getUserLogin()</function-signature>
+    <example>
+      ${funcs:getUserLogin()}
+    </example>
+  </function>
+  <function>
+    <description>getCustInfo</description>
+    <name>getCustInfo</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>com.lol.common.model.ds1.CustInfo getCustInfo()</function-signature>
+    <example>
+      ${funcs:getCustInfo()}
+    </example>
+  </function>
+  
+  <function>
+    <description>getUsernameById</description>
+    <name>getUsernameById</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.lang.String getUsernameById(java.lang.Long)</function-signature>
+    <example>
+      ${funcs:getUsernameById(java.lang.Long)}
+    </example>
+  </function>
+  
+  <function>
+    <description>getRealnameById</description>
+    <name>getRealnameById</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.lang.String getRealnameById(java.lang.Long)</function-signature>
+    <example>
+      ${funcs:getRealnameById(java.lang.Long)}
+    </example>
+  </function>
+  
+  <function>
+    <description>getRealnameByUsername</description>
+    <name>getRealnameByUsername</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.lang.String getRealnameByUsername(java.lang.String)</function-signature>
+    <example>
+      ${funcs:getRealnameByUsername(java.lang.String)}
+    </example>
+  </function>
+  
+  <function>
+    <description>getCustNameByCustId</description>
+    <name>getCustNameByCustId</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.lang.String getCustNameByCustId(java.lang.String)</function-signature>
+    <example>
+      ${funcs:getCustNameByCustId(java.lang.String)}
+    </example>
+  </function>
+  
+  <function>
+    <description>getCustNameByCustIds</description>
+    <name>getCustNameByCustIds</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.lang.String getCustNameByCustIds(java.lang.String)</function-signature>
+    <example>
+      ${funcs:getCustNameByCustIds(java.lang.String)}
+    </example>
+  </function>
+  
+  
+  <function>
+    <description>getCoachNameByProductId</description>
+    <name>getCoachNameByProductId</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.lang.String getCoachNameByProductId(java.lang.String)</function-signature>
+    <example>
+      ${funcs:getCoachNameByProductId(java.lang.String)}
+    </example>
+  </function>
+  <function>
+    <description>getCourseNameByProductId</description>
+    <name>getCourseNameByProductId</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.lang.String getCourseNameByProductId(java.lang.String)</function-signature>
+    <example>
+      ${funcs:getCourseNameByProductId(java.lang.String)}
+    </example>
+  </function>
+  
+  
+  
+  <function>
+    <description>getProductNameByProductId</description>
+    <name>getProductNameByProductId</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.lang.String getProductNameByProductId(java.lang.String)</function-signature>
+    <example>
+      ${funcs:getProductNameByProductId(java.lang.String)}
+    </example>
+  </function>
+  
+  
+  <function>
+    <description>getProductImgByProductId</description>
+    <name>getProductImgByProductId</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.lang.String getProductImgByProductId(java.lang.String)</function-signature>
+    <example>
+      ${funcs:getProductImgByProductId(java.lang.String)}
+    </example>
+  </function>
+  
+   <function>
+    <description>getCourseNameByCourseId</description>
+    <name>getCourseNameByCourseId</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.lang.String getCourseNameByCourseId(java.lang.String)</function-signature>
+    <example>
+      ${funcs:getCourseNameByCourseId(java.lang.String)}
+    </example>
+  </function>
+  
+  
+  <function>
+    <description>getCourseImgByCourseId</description>
+    <name>getCourseImgByCourseId</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.lang.String getCourseImgByCourseId(java.lang.String)</function-signature>
+    <example>
+      ${funcs:getCourseImgByCourseId(java.lang.String)}
+    </example>
+  </function>
+  
+  <function>
+    <description>getCourseIdByCoursePriceId</description>
+    <name>getCourseIdByCoursePriceId</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.lang.String getCourseIdByCoursePriceId(java.lang.String)</function-signature>
+    <example>
+      ${funcs:getCourseIdByCoursePriceId(java.lang.String)}
+    </example>
+  </function>
+  
+  
+  <function>
+    <description>getCoachNameById</description>
+    <name>getCoachNameById</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.lang.String getCoachNameById(java.lang.Long)</function-signature>
+    <example>
+      ${funcs:getCoachNameById(java.lang.Long)}
+    </example>
+  </function>
+  
+  <function>
+    <description>getCoachImgById</description>
+    <name>getCoachImgById</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.lang.String getCoachImgById(java.lang.Long)</function-signature>
+    <example>
+      ${funcs:getCoachImgById(java.lang.Long)}
+    </example>
+  </function>
+  
+  <function>
+    <description>getmemberImgBymemberId</description>
+    <name>getmemberImgBymemberId</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.lang.String getmemberImgBymemberId(java.lang.String)</function-signature>
+    <example>
+      ${funcs:getmemberImgBymemberId(java.lang.String)}
+    </example>
+  </function>
+  
+  <function>
+    <description>getmemberNameBymemberId</description>
+    <name>getmemberNameBymemberId</name>
+    <function-class>com.lol.web.JSTLFuncs</function-class>
+    <function-signature>java.lang.String getmemberNameBymemberId(java.lang.String)</function-signature>
+    <example>
+      ${funcs:getmemberNameBymemberId(java.lang.String)}
+    </example>
+  </function>
+  
+</taglib>

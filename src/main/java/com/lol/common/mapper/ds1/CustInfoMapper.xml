@@ -1,0 +1,1056 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lol.common.mapper.ds1.CustInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lol.common.model.ds1.CustInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="cust_name" property="custName" jdbcType="VARCHAR" />
+    <result column="signimg" property="signimg" jdbcType="VARCHAR" />
+    <result column="cust_type" property="custType" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="link_man" property="linkMan" jdbcType="VARCHAR" />
+    <result column="cust_desc" property="custDesc" jdbcType="VARCHAR" />
+    <result column="link_mobile" property="linkMobile" jdbcType="VARCHAR" />
+    <result column="link_qq" property="linkQq" jdbcType="VARCHAR" />
+    <result column="link_email" property="linkEmail" jdbcType="VARCHAR" />
+    <result column="link_fax" property="linkFax" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="order_count" property="orderCount" jdbcType="INTEGER" />
+    <result column="order_money" property="orderMoney" jdbcType="BIGINT" />
+    <result column="sale_count" property="saleCount" jdbcType="INTEGER" />
+    <result column="sale_money" property="saleMoney" jdbcType="BIGINT" />
+    <result column="deposit" property="deposit" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="system_id" property="systemId" jdbcType="INTEGER" />
+    <result column="alipay_account" property="alipayAccount" jdbcType="VARCHAR" />
+    <result column="alipay_name" property="alipayName" jdbcType="VARCHAR" />
+    <result column="bank_province" property="bankProvince" jdbcType="VARCHAR" />
+    <result column="bank_city" property="bankCity" jdbcType="VARCHAR" />
+    <result column="bank_district" property="bankDistrict" jdbcType="VARCHAR" />
+    <result column="bank_account" property="bankAccount" jdbcType="VARCHAR" />
+    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+    <result column="bank_acname" property="bankAcname" jdbcType="VARCHAR" />
+    <result column="prod_num" property="prodNum" jdbcType="INTEGER" />
+    <result column="interface_mode" property="interfaceMode" jdbcType="INTEGER" />
+    <result column="logo" property="logo" jdbcType="VARCHAR" />
+    <result column="is_finish" property="isFinish" jdbcType="INTEGER" />
+    <result column="money_mode" property="moneyMode" jdbcType="INTEGER" />
+    <result column="is_push" property="isPush" jdbcType="INTEGER" />
+    <result column="is_b2b" property="isB2b" jdbcType="INTEGER" />
+    <result column="is_gmoney" property="isGmoney" jdbcType="INTEGER" />
+    <result column="pay_fee" property="payFee" jdbcType="INTEGER" />
+    <result column="gat_fee" property="gatFee" jdbcType="INTEGER" />
+    <result column="push_mobile" property="pushMobile" jdbcType="VARCHAR" />
+    <result column="push_email" property="pushEmail" jdbcType="VARCHAR" />
+    <result column="currency_type" property="currencyType" jdbcType="INTEGER" />
+    <result column="business_info" property="businessInfo" jdbcType="VARCHAR" />
+    <result column="sport_type" property="sportType" jdbcType="INTEGER" />
+    <result column="parent_type" property="parentType" jdbcType="INTEGER" />
+    <result column="bank_type" property="bankType" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="DOUBLE" />
+    <result column="latitude" property="latitude" jdbcType="DOUBLE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.lol.common.model.ds1.CustInfo" extends="BaseResultMap" >
+    <result column="ui_desc" property="uiDesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cust_name, signimg, cust_type, area_id, link_man, cust_desc, link_mobile, link_qq, 
+    link_email, link_fax, address, create_time, order_count, order_money, sale_count, 
+    sale_money, deposit, status, parent_id, system_id, alipay_account, alipay_name, bank_province, 
+    bank_city, bank_district, bank_account, bank_name, bank_acname, prod_num, interface_mode, 
+    logo, is_finish, money_mode, is_push, is_b2b, is_gmoney, pay_fee, gat_fee, push_mobile, 
+    push_email, currency_type, business_info, sport_type, parent_type, bank_type, longitude, 
+    latitude
+  </sql>
+  <sql id="Blob_Column_List" >
+    ui_desc
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.lol.common.model.ds1.CustInfoExample" >
+    <include refid="pagePrefix" />
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cust_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="pageSuffix" />
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lol.common.model.ds1.CustInfoExample" >
+    <include refid="pagePrefix" />
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cust_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="pageSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cust_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cust_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lol.common.model.ds1.CustInfoExample" >
+    delete from cust_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lol.common.model.ds1.CustInfo" >
+    insert into cust_info (id, cust_name, signimg, 
+      cust_type, area_id, link_man, 
+      cust_desc, link_mobile, link_qq, 
+      link_email, link_fax, address, 
+      create_time, order_count, order_money, 
+      sale_count, sale_money, deposit, 
+      status, parent_id, system_id, 
+      alipay_account, alipay_name, bank_province, 
+      bank_city, bank_district, bank_account, 
+      bank_name, bank_acname, prod_num, 
+      interface_mode, logo, is_finish, 
+      money_mode, is_push, is_b2b, 
+      is_gmoney, pay_fee, gat_fee, 
+      push_mobile, push_email, currency_type, 
+      business_info, sport_type, parent_type, 
+      bank_type, longitude, latitude, 
+      ui_desc)
+    values (#{id,jdbcType=BIGINT}, #{custName,jdbcType=VARCHAR}, #{signimg,jdbcType=VARCHAR}, 
+      #{custType,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER}, #{linkMan,jdbcType=VARCHAR}, 
+      #{custDesc,jdbcType=VARCHAR}, #{linkMobile,jdbcType=VARCHAR}, #{linkQq,jdbcType=VARCHAR}, 
+      #{linkEmail,jdbcType=VARCHAR}, #{linkFax,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{orderCount,jdbcType=INTEGER}, #{orderMoney,jdbcType=BIGINT}, 
+      #{saleCount,jdbcType=INTEGER}, #{saleMoney,jdbcType=BIGINT}, #{deposit,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{systemId,jdbcType=INTEGER}, 
+      #{alipayAccount,jdbcType=VARCHAR}, #{alipayName,jdbcType=VARCHAR}, #{bankProvince,jdbcType=VARCHAR}, 
+      #{bankCity,jdbcType=VARCHAR}, #{bankDistrict,jdbcType=VARCHAR}, #{bankAccount,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{bankAcname,jdbcType=VARCHAR}, #{prodNum,jdbcType=INTEGER}, 
+      #{interfaceMode,jdbcType=INTEGER}, #{logo,jdbcType=VARCHAR}, #{isFinish,jdbcType=INTEGER}, 
+      #{moneyMode,jdbcType=INTEGER}, #{isPush,jdbcType=INTEGER}, #{isB2b,jdbcType=INTEGER}, 
+      #{isGmoney,jdbcType=INTEGER}, #{payFee,jdbcType=INTEGER}, #{gatFee,jdbcType=INTEGER}, 
+      #{pushMobile,jdbcType=VARCHAR}, #{pushEmail,jdbcType=VARCHAR}, #{currencyType,jdbcType=INTEGER}, 
+      #{businessInfo,jdbcType=VARCHAR}, #{sportType,jdbcType=INTEGER}, #{parentType,jdbcType=INTEGER}, 
+      #{bankType,jdbcType=VARCHAR}, #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, 
+      #{uiDesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lol.common.model.ds1.CustInfo" >
+    insert into cust_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="custName != null" >
+        cust_name,
+      </if>
+      <if test="signimg != null" >
+        signimg,
+      </if>
+      <if test="custType != null" >
+        cust_type,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="linkMan != null" >
+        link_man,
+      </if>
+      <if test="custDesc != null" >
+        cust_desc,
+      </if>
+      <if test="linkMobile != null" >
+        link_mobile,
+      </if>
+      <if test="linkQq != null" >
+        link_qq,
+      </if>
+      <if test="linkEmail != null" >
+        link_email,
+      </if>
+      <if test="linkFax != null" >
+        link_fax,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="orderCount != null" >
+        order_count,
+      </if>
+      <if test="orderMoney != null" >
+        order_money,
+      </if>
+      <if test="saleCount != null" >
+        sale_count,
+      </if>
+      <if test="saleMoney != null" >
+        sale_money,
+      </if>
+      <if test="deposit != null" >
+        deposit,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="systemId != null" >
+        system_id,
+      </if>
+      <if test="alipayAccount != null" >
+        alipay_account,
+      </if>
+      <if test="alipayName != null" >
+        alipay_name,
+      </if>
+      <if test="bankProvince != null" >
+        bank_province,
+      </if>
+      <if test="bankCity != null" >
+        bank_city,
+      </if>
+      <if test="bankDistrict != null" >
+        bank_district,
+      </if>
+      <if test="bankAccount != null" >
+        bank_account,
+      </if>
+      <if test="bankName != null" >
+        bank_name,
+      </if>
+      <if test="bankAcname != null" >
+        bank_acname,
+      </if>
+      <if test="prodNum != null" >
+        prod_num,
+      </if>
+      <if test="interfaceMode != null" >
+        interface_mode,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="isFinish != null" >
+        is_finish,
+      </if>
+      <if test="moneyMode != null" >
+        money_mode,
+      </if>
+      <if test="isPush != null" >
+        is_push,
+      </if>
+      <if test="isB2b != null" >
+        is_b2b,
+      </if>
+      <if test="isGmoney != null" >
+        is_gmoney,
+      </if>
+      <if test="payFee != null" >
+        pay_fee,
+      </if>
+      <if test="gatFee != null" >
+        gat_fee,
+      </if>
+      <if test="pushMobile != null" >
+        push_mobile,
+      </if>
+      <if test="pushEmail != null" >
+        push_email,
+      </if>
+      <if test="currencyType != null" >
+        currency_type,
+      </if>
+      <if test="businessInfo != null" >
+        business_info,
+      </if>
+      <if test="sportType != null" >
+        sport_type,
+      </if>
+      <if test="parentType != null" >
+        parent_type,
+      </if>
+      <if test="bankType != null" >
+        bank_type,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="uiDesc != null" >
+        ui_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="custName != null" >
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="signimg != null" >
+        #{signimg,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null" >
+        #{custType,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="linkMan != null" >
+        #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="custDesc != null" >
+        #{custDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMobile != null" >
+        #{linkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="linkQq != null" >
+        #{linkQq,jdbcType=VARCHAR},
+      </if>
+      <if test="linkEmail != null" >
+        #{linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="linkFax != null" >
+        #{linkFax,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCount != null" >
+        #{orderCount,jdbcType=INTEGER},
+      </if>
+      <if test="orderMoney != null" >
+        #{orderMoney,jdbcType=BIGINT},
+      </if>
+      <if test="saleCount != null" >
+        #{saleCount,jdbcType=INTEGER},
+      </if>
+      <if test="saleMoney != null" >
+        #{saleMoney,jdbcType=BIGINT},
+      </if>
+      <if test="deposit != null" >
+        #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="systemId != null" >
+        #{systemId,jdbcType=INTEGER},
+      </if>
+      <if test="alipayAccount != null" >
+        #{alipayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayName != null" >
+        #{alipayName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankProvince != null" >
+        #{bankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCity != null" >
+        #{bankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="bankDistrict != null" >
+        #{bankDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAcname != null" >
+        #{bankAcname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodNum != null" >
+        #{prodNum,jdbcType=INTEGER},
+      </if>
+      <if test="interfaceMode != null" >
+        #{interfaceMode,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="isFinish != null" >
+        #{isFinish,jdbcType=INTEGER},
+      </if>
+      <if test="moneyMode != null" >
+        #{moneyMode,jdbcType=INTEGER},
+      </if>
+      <if test="isPush != null" >
+        #{isPush,jdbcType=INTEGER},
+      </if>
+      <if test="isB2b != null" >
+        #{isB2b,jdbcType=INTEGER},
+      </if>
+      <if test="isGmoney != null" >
+        #{isGmoney,jdbcType=INTEGER},
+      </if>
+      <if test="payFee != null" >
+        #{payFee,jdbcType=INTEGER},
+      </if>
+      <if test="gatFee != null" >
+        #{gatFee,jdbcType=INTEGER},
+      </if>
+      <if test="pushMobile != null" >
+        #{pushMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="pushEmail != null" >
+        #{pushEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyType != null" >
+        #{currencyType,jdbcType=INTEGER},
+      </if>
+      <if test="businessInfo != null" >
+        #{businessInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="sportType != null" >
+        #{sportType,jdbcType=INTEGER},
+      </if>
+      <if test="parentType != null" >
+        #{parentType,jdbcType=INTEGER},
+      </if>
+      <if test="bankType != null" >
+        #{bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="uiDesc != null" >
+        #{uiDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lol.common.model.ds1.CustInfoExample" resultType="java.lang.Integer" >
+    select count(*) from cust_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cust_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.custName != null" >
+        cust_name = #{record.custName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signimg != null" >
+        signimg = #{record.signimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custType != null" >
+        cust_type = #{record.custType,jdbcType=INTEGER},
+      </if>
+      <if test="record.areaId != null" >
+        area_id = #{record.areaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.linkMan != null" >
+        link_man = #{record.linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custDesc != null" >
+        cust_desc = #{record.custDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkMobile != null" >
+        link_mobile = #{record.linkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkQq != null" >
+        link_qq = #{record.linkQq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkEmail != null" >
+        link_email = #{record.linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkFax != null" >
+        link_fax = #{record.linkFax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderCount != null" >
+        order_count = #{record.orderCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderMoney != null" >
+        order_money = #{record.orderMoney,jdbcType=BIGINT},
+      </if>
+      <if test="record.saleCount != null" >
+        sale_count = #{record.saleCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.saleMoney != null" >
+        sale_money = #{record.saleMoney,jdbcType=BIGINT},
+      </if>
+      <if test="record.deposit != null" >
+        deposit = #{record.deposit,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentId != null" >
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.systemId != null" >
+        system_id = #{record.systemId,jdbcType=INTEGER},
+      </if>
+      <if test="record.alipayAccount != null" >
+        alipay_account = #{record.alipayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alipayName != null" >
+        alipay_name = #{record.alipayName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankProvince != null" >
+        bank_province = #{record.bankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankCity != null" >
+        bank_city = #{record.bankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankDistrict != null" >
+        bank_district = #{record.bankDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAccount != null" >
+        bank_account = #{record.bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankName != null" >
+        bank_name = #{record.bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAcname != null" >
+        bank_acname = #{record.bankAcname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodNum != null" >
+        prod_num = #{record.prodNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.interfaceMode != null" >
+        interface_mode = #{record.interfaceMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.logo != null" >
+        logo = #{record.logo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isFinish != null" >
+        is_finish = #{record.isFinish,jdbcType=INTEGER},
+      </if>
+      <if test="record.moneyMode != null" >
+        money_mode = #{record.moneyMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.isPush != null" >
+        is_push = #{record.isPush,jdbcType=INTEGER},
+      </if>
+      <if test="record.isB2b != null" >
+        is_b2b = #{record.isB2b,jdbcType=INTEGER},
+      </if>
+      <if test="record.isGmoney != null" >
+        is_gmoney = #{record.isGmoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.payFee != null" >
+        pay_fee = #{record.payFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.gatFee != null" >
+        gat_fee = #{record.gatFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushMobile != null" >
+        push_mobile = #{record.pushMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pushEmail != null" >
+        push_email = #{record.pushEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currencyType != null" >
+        currency_type = #{record.currencyType,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessInfo != null" >
+        business_info = #{record.businessInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportType != null" >
+        sport_type = #{record.sportType,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentType != null" >
+        parent_type = #{record.parentType,jdbcType=INTEGER},
+      </if>
+      <if test="record.bankType != null" >
+        bank_type = #{record.bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longitude != null" >
+        longitude = #{record.longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.latitude != null" >
+        latitude = #{record.latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.uiDesc != null" >
+        ui_desc = #{record.uiDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update cust_info
+    set id = #{record.id,jdbcType=BIGINT},
+      cust_name = #{record.custName,jdbcType=VARCHAR},
+      signimg = #{record.signimg,jdbcType=VARCHAR},
+      cust_type = #{record.custType,jdbcType=INTEGER},
+      area_id = #{record.areaId,jdbcType=INTEGER},
+      link_man = #{record.linkMan,jdbcType=VARCHAR},
+      cust_desc = #{record.custDesc,jdbcType=VARCHAR},
+      link_mobile = #{record.linkMobile,jdbcType=VARCHAR},
+      link_qq = #{record.linkQq,jdbcType=VARCHAR},
+      link_email = #{record.linkEmail,jdbcType=VARCHAR},
+      link_fax = #{record.linkFax,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      order_count = #{record.orderCount,jdbcType=INTEGER},
+      order_money = #{record.orderMoney,jdbcType=BIGINT},
+      sale_count = #{record.saleCount,jdbcType=INTEGER},
+      sale_money = #{record.saleMoney,jdbcType=BIGINT},
+      deposit = #{record.deposit,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
+      system_id = #{record.systemId,jdbcType=INTEGER},
+      alipay_account = #{record.alipayAccount,jdbcType=VARCHAR},
+      alipay_name = #{record.alipayName,jdbcType=VARCHAR},
+      bank_province = #{record.bankProvince,jdbcType=VARCHAR},
+      bank_city = #{record.bankCity,jdbcType=VARCHAR},
+      bank_district = #{record.bankDistrict,jdbcType=VARCHAR},
+      bank_account = #{record.bankAccount,jdbcType=VARCHAR},
+      bank_name = #{record.bankName,jdbcType=VARCHAR},
+      bank_acname = #{record.bankAcname,jdbcType=VARCHAR},
+      prod_num = #{record.prodNum,jdbcType=INTEGER},
+      interface_mode = #{record.interfaceMode,jdbcType=INTEGER},
+      logo = #{record.logo,jdbcType=VARCHAR},
+      is_finish = #{record.isFinish,jdbcType=INTEGER},
+      money_mode = #{record.moneyMode,jdbcType=INTEGER},
+      is_push = #{record.isPush,jdbcType=INTEGER},
+      is_b2b = #{record.isB2b,jdbcType=INTEGER},
+      is_gmoney = #{record.isGmoney,jdbcType=INTEGER},
+      pay_fee = #{record.payFee,jdbcType=INTEGER},
+      gat_fee = #{record.gatFee,jdbcType=INTEGER},
+      push_mobile = #{record.pushMobile,jdbcType=VARCHAR},
+      push_email = #{record.pushEmail,jdbcType=VARCHAR},
+      currency_type = #{record.currencyType,jdbcType=INTEGER},
+      business_info = #{record.businessInfo,jdbcType=VARCHAR},
+      sport_type = #{record.sportType,jdbcType=INTEGER},
+      parent_type = #{record.parentType,jdbcType=INTEGER},
+      bank_type = #{record.bankType,jdbcType=VARCHAR},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      latitude = #{record.latitude,jdbcType=DOUBLE},
+      ui_desc = #{record.uiDesc,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cust_info
+    set id = #{record.id,jdbcType=BIGINT},
+      cust_name = #{record.custName,jdbcType=VARCHAR},
+      signimg = #{record.signimg,jdbcType=VARCHAR},
+      cust_type = #{record.custType,jdbcType=INTEGER},
+      area_id = #{record.areaId,jdbcType=INTEGER},
+      link_man = #{record.linkMan,jdbcType=VARCHAR},
+      cust_desc = #{record.custDesc,jdbcType=VARCHAR},
+      link_mobile = #{record.linkMobile,jdbcType=VARCHAR},
+      link_qq = #{record.linkQq,jdbcType=VARCHAR},
+      link_email = #{record.linkEmail,jdbcType=VARCHAR},
+      link_fax = #{record.linkFax,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      order_count = #{record.orderCount,jdbcType=INTEGER},
+      order_money = #{record.orderMoney,jdbcType=BIGINT},
+      sale_count = #{record.saleCount,jdbcType=INTEGER},
+      sale_money = #{record.saleMoney,jdbcType=BIGINT},
+      deposit = #{record.deposit,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
+      system_id = #{record.systemId,jdbcType=INTEGER},
+      alipay_account = #{record.alipayAccount,jdbcType=VARCHAR},
+      alipay_name = #{record.alipayName,jdbcType=VARCHAR},
+      bank_province = #{record.bankProvince,jdbcType=VARCHAR},
+      bank_city = #{record.bankCity,jdbcType=VARCHAR},
+      bank_district = #{record.bankDistrict,jdbcType=VARCHAR},
+      bank_account = #{record.bankAccount,jdbcType=VARCHAR},
+      bank_name = #{record.bankName,jdbcType=VARCHAR},
+      bank_acname = #{record.bankAcname,jdbcType=VARCHAR},
+      prod_num = #{record.prodNum,jdbcType=INTEGER},
+      interface_mode = #{record.interfaceMode,jdbcType=INTEGER},
+      logo = #{record.logo,jdbcType=VARCHAR},
+      is_finish = #{record.isFinish,jdbcType=INTEGER},
+      money_mode = #{record.moneyMode,jdbcType=INTEGER},
+      is_push = #{record.isPush,jdbcType=INTEGER},
+      is_b2b = #{record.isB2b,jdbcType=INTEGER},
+      is_gmoney = #{record.isGmoney,jdbcType=INTEGER},
+      pay_fee = #{record.payFee,jdbcType=INTEGER},
+      gat_fee = #{record.gatFee,jdbcType=INTEGER},
+      push_mobile = #{record.pushMobile,jdbcType=VARCHAR},
+      push_email = #{record.pushEmail,jdbcType=VARCHAR},
+      currency_type = #{record.currencyType,jdbcType=INTEGER},
+      business_info = #{record.businessInfo,jdbcType=VARCHAR},
+      sport_type = #{record.sportType,jdbcType=INTEGER},
+      parent_type = #{record.parentType,jdbcType=INTEGER},
+      bank_type = #{record.bankType,jdbcType=VARCHAR},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      latitude = #{record.latitude,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lol.common.model.ds1.CustInfo" >
+    update cust_info
+    <set >
+      <if test="custName != null" >
+        cust_name = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="signimg != null" >
+        signimg = #{signimg,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null" >
+        cust_type = #{custType,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="linkMan != null" >
+        link_man = #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="custDesc != null" >
+        cust_desc = #{custDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMobile != null" >
+        link_mobile = #{linkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="linkQq != null" >
+        link_qq = #{linkQq,jdbcType=VARCHAR},
+      </if>
+      <if test="linkEmail != null" >
+        link_email = #{linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="linkFax != null" >
+        link_fax = #{linkFax,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCount != null" >
+        order_count = #{orderCount,jdbcType=INTEGER},
+      </if>
+      <if test="orderMoney != null" >
+        order_money = #{orderMoney,jdbcType=BIGINT},
+      </if>
+      <if test="saleCount != null" >
+        sale_count = #{saleCount,jdbcType=INTEGER},
+      </if>
+      <if test="saleMoney != null" >
+        sale_money = #{saleMoney,jdbcType=BIGINT},
+      </if>
+      <if test="deposit != null" >
+        deposit = #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="systemId != null" >
+        system_id = #{systemId,jdbcType=INTEGER},
+      </if>
+      <if test="alipayAccount != null" >
+        alipay_account = #{alipayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayName != null" >
+        alipay_name = #{alipayName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankProvince != null" >
+        bank_province = #{bankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCity != null" >
+        bank_city = #{bankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="bankDistrict != null" >
+        bank_district = #{bankDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        bank_account = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAcname != null" >
+        bank_acname = #{bankAcname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodNum != null" >
+        prod_num = #{prodNum,jdbcType=INTEGER},
+      </if>
+      <if test="interfaceMode != null" >
+        interface_mode = #{interfaceMode,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="isFinish != null" >
+        is_finish = #{isFinish,jdbcType=INTEGER},
+      </if>
+      <if test="moneyMode != null" >
+        money_mode = #{moneyMode,jdbcType=INTEGER},
+      </if>
+      <if test="isPush != null" >
+        is_push = #{isPush,jdbcType=INTEGER},
+      </if>
+      <if test="isB2b != null" >
+        is_b2b = #{isB2b,jdbcType=INTEGER},
+      </if>
+      <if test="isGmoney != null" >
+        is_gmoney = #{isGmoney,jdbcType=INTEGER},
+      </if>
+      <if test="payFee != null" >
+        pay_fee = #{payFee,jdbcType=INTEGER},
+      </if>
+      <if test="gatFee != null" >
+        gat_fee = #{gatFee,jdbcType=INTEGER},
+      </if>
+      <if test="pushMobile != null" >
+        push_mobile = #{pushMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="pushEmail != null" >
+        push_email = #{pushEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyType != null" >
+        currency_type = #{currencyType,jdbcType=INTEGER},
+      </if>
+      <if test="businessInfo != null" >
+        business_info = #{businessInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="sportType != null" >
+        sport_type = #{sportType,jdbcType=INTEGER},
+      </if>
+      <if test="parentType != null" >
+        parent_type = #{parentType,jdbcType=INTEGER},
+      </if>
+      <if test="bankType != null" >
+        bank_type = #{bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="uiDesc != null" >
+        ui_desc = #{uiDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lol.common.model.ds1.CustInfo" >
+    update cust_info
+    set cust_name = #{custName,jdbcType=VARCHAR},
+      signimg = #{signimg,jdbcType=VARCHAR},
+      cust_type = #{custType,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      link_man = #{linkMan,jdbcType=VARCHAR},
+      cust_desc = #{custDesc,jdbcType=VARCHAR},
+      link_mobile = #{linkMobile,jdbcType=VARCHAR},
+      link_qq = #{linkQq,jdbcType=VARCHAR},
+      link_email = #{linkEmail,jdbcType=VARCHAR},
+      link_fax = #{linkFax,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      order_count = #{orderCount,jdbcType=INTEGER},
+      order_money = #{orderMoney,jdbcType=BIGINT},
+      sale_count = #{saleCount,jdbcType=INTEGER},
+      sale_money = #{saleMoney,jdbcType=BIGINT},
+      deposit = #{deposit,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      system_id = #{systemId,jdbcType=INTEGER},
+      alipay_account = #{alipayAccount,jdbcType=VARCHAR},
+      alipay_name = #{alipayName,jdbcType=VARCHAR},
+      bank_province = #{bankProvince,jdbcType=VARCHAR},
+      bank_city = #{bankCity,jdbcType=VARCHAR},
+      bank_district = #{bankDistrict,jdbcType=VARCHAR},
+      bank_account = #{bankAccount,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_acname = #{bankAcname,jdbcType=VARCHAR},
+      prod_num = #{prodNum,jdbcType=INTEGER},
+      interface_mode = #{interfaceMode,jdbcType=INTEGER},
+      logo = #{logo,jdbcType=VARCHAR},
+      is_finish = #{isFinish,jdbcType=INTEGER},
+      money_mode = #{moneyMode,jdbcType=INTEGER},
+      is_push = #{isPush,jdbcType=INTEGER},
+      is_b2b = #{isB2b,jdbcType=INTEGER},
+      is_gmoney = #{isGmoney,jdbcType=INTEGER},
+      pay_fee = #{payFee,jdbcType=INTEGER},
+      gat_fee = #{gatFee,jdbcType=INTEGER},
+      push_mobile = #{pushMobile,jdbcType=VARCHAR},
+      push_email = #{pushEmail,jdbcType=VARCHAR},
+      currency_type = #{currencyType,jdbcType=INTEGER},
+      business_info = #{businessInfo,jdbcType=VARCHAR},
+      sport_type = #{sportType,jdbcType=INTEGER},
+      parent_type = #{parentType,jdbcType=INTEGER},
+      bank_type = #{bankType,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      ui_desc = #{uiDesc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lol.common.model.ds1.CustInfo" >
+    update cust_info
+    set cust_name = #{custName,jdbcType=VARCHAR},
+      signimg = #{signimg,jdbcType=VARCHAR},
+      cust_type = #{custType,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      link_man = #{linkMan,jdbcType=VARCHAR},
+      cust_desc = #{custDesc,jdbcType=VARCHAR},
+      link_mobile = #{linkMobile,jdbcType=VARCHAR},
+      link_qq = #{linkQq,jdbcType=VARCHAR},
+      link_email = #{linkEmail,jdbcType=VARCHAR},
+      link_fax = #{linkFax,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      order_count = #{orderCount,jdbcType=INTEGER},
+      order_money = #{orderMoney,jdbcType=BIGINT},
+      sale_count = #{saleCount,jdbcType=INTEGER},
+      sale_money = #{saleMoney,jdbcType=BIGINT},
+      deposit = #{deposit,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      system_id = #{systemId,jdbcType=INTEGER},
+      alipay_account = #{alipayAccount,jdbcType=VARCHAR},
+      alipay_name = #{alipayName,jdbcType=VARCHAR},
+      bank_province = #{bankProvince,jdbcType=VARCHAR},
+      bank_city = #{bankCity,jdbcType=VARCHAR},
+      bank_district = #{bankDistrict,jdbcType=VARCHAR},
+      bank_account = #{bankAccount,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_acname = #{bankAcname,jdbcType=VARCHAR},
+      prod_num = #{prodNum,jdbcType=INTEGER},
+      interface_mode = #{interfaceMode,jdbcType=INTEGER},
+      logo = #{logo,jdbcType=VARCHAR},
+      is_finish = #{isFinish,jdbcType=INTEGER},
+      money_mode = #{moneyMode,jdbcType=INTEGER},
+      is_push = #{isPush,jdbcType=INTEGER},
+      is_b2b = #{isB2b,jdbcType=INTEGER},
+      is_gmoney = #{isGmoney,jdbcType=INTEGER},
+      pay_fee = #{payFee,jdbcType=INTEGER},
+      gat_fee = #{gatFee,jdbcType=INTEGER},
+      push_mobile = #{pushMobile,jdbcType=VARCHAR},
+      push_email = #{pushEmail,jdbcType=VARCHAR},
+      currency_type = #{currencyType,jdbcType=INTEGER},
+      business_info = #{businessInfo,jdbcType=VARCHAR},
+      sport_type = #{sportType,jdbcType=INTEGER},
+      parent_type = #{parentType,jdbcType=INTEGER},
+      bank_type = #{bankType,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="pagePrefix" >
+    <if test="page != null" >
+      <if test="dialect == 'oracle'" >
+        select * from ( select row_.*, rownum rownum_ from ( 
+      </if>
+    </if>
+  </sql>
+  <sql id="pageSuffix" >
+    <if test="page != null" >
+      <if test="dialect == 'oracle'" >
+        <![CDATA[ ) row_ ) where rownum_ > #{page.start} and rownum_ <= (#{page.start} + #{page.limit}) ]]>
+      </if>
+      <if test="dialect == 'mysql'" >
+        limit #{page.start} , #{page.limit}
+      </if>
+    </if>
+  </sql>
+</mapper>
